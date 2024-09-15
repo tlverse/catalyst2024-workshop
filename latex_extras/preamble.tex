@@ -1,0 +1,99 @@
+\usepackage{booktabs}
+\usepackage[inline]{enumitem}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage[english]{babel}
+\usepackage{longtable}
+\usepackage{color}
+\usepackage{mathtools,bm,amssymb,amsmath,amsthm}
+\usepackage{multirow}
+\usepackage[titletoc,title]{appendix}
+\usepackage{authblk}
+\usepackage{setspace}
+\usepackage{dsfont}
+\PassOptionsToPackage{utf8x}{inputenc}
+\usepackage[OT1]{fontenc}
+\usepackage[bf,singlelinecheck=off]{caption}
+\usepackage{refcount}
+\usepackage{framed,color}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\urlstyle{tt}
+\usepackage[none]{hyphenat} 
+
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\topfraction}{0.8}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\floatpagefraction}{0.75}
+
+\usepackage{makeidx}
+\makeindex
+
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+
+\newtheorem*{remark}{Remark}
+\newtheorem{theorem}{Theorem}
+\AtEndDocument{\refstepcounter{theorem}\label{finalthm}}
+{
+  \theoremstyle{definition}
+  \newtheorem{assumption}{}
+}
+{
+  \theoremstyle{definition}
+  \newtheorem{assumptioniden}{}
+}
+{
+  \theoremstyle{definition}
+  \newtheorem{example}{Example}[section]
+}
+\DeclareMathOperator{\opt}{opt}
+\DeclareMathOperator{\dr}{IF}
+\newcommand{\hopt}{\hat h_{\opt}}
+\newcommand{\supp}{\mathop{\mathrm{supp}}}
+\renewcommand\theassumptioniden{{A}\arabic{assumptioniden}}
+\renewcommand\theassumption{{C}\arabic{assumption}}
+\renewcommand\theexample{\arabic{example}}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{coro}{Corollary}
+\newtheorem{definition}{Definition}
+\DeclareMathOperator{\bern}{Bern}
+\DeclareMathOperator{\var}{Var}
+\DeclareMathOperator{\Rem}{Rem}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\1}{\mathbbm{1}}
+\DeclareMathOperator{\expit}{expit}
+\DeclareMathOperator{\logit}{logit}
+\newcommand{\indep}{\mbox{$\perp\!\!\!\perp$}}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\usepackage{color}
+\lstset{
+  breaklines=true,
+  language=R,
+  showspaces=false, 
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange}
+}
+\DeclareUnicodeCharacter{2212}{-}
+% setting bookdown frontmatter option
+\frontmatter
+
+\usepackage{framed}
+\setlength{\fboxsep}{.8em}
+\usepackage{tcolorbox}
