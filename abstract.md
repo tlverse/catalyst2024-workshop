@@ -16,24 +16,26 @@ quantities via standardization (i.e., outcome regression) and inverse
 probability weighting. However, such progress has failed to keep pace with
 developments in machine learning; thus, the practice of causal inference is
 often marred by over-reliance on restrictive modeling practices. The Targeted
-Learning (TL) paradigm presents a solution to this quandary by unifying aspects
+Learning (TL) paradigm presents a solution to this problem by unifying aspects
 of semi-parametric statistical theory, machine learning, and causal inference.
 The result is a methodological toolbox for evaluating causal effects via
-state-of-the-art estimators that are both robust (to model misspecification) and
-efficient (minimal variance, i.e., with narrowest possible confidence
+state-of-the-art estimators that are both robust (to model misspecification)
+and efficient (minimal variance, i.e., narrowest possible confidence
 intervals). This short course introduces the TL paradigm, beginning with the
 guiding philosophy and underlying scientific motivations and going on to
 discuss estimation algorithms and their practical implementation through
-open-source software tools (via the TLverse: <https://github.com/tlverse>),
+open-source software tools (e.g., the TLverse: <https://github.com/tlverse>),
 addressing basic theoretical underpinnings along the way. Specific topics to be
 covered include targeted maximum likelihood estimation (TMLE) and collaborative
-TMLE (C-TMLE); TMLE algorithms to estimate the causal effects of interventions
-on binary and continuous exposures; complications for addressing time-varying
-confounding and/or censoring; and incorporating machine learning via the super
-learner algorithm. This short course incorporates a mix of discussion and
-hands-on programming exercises to allow participants to build familiarity with
-techniques and tools that will translate to improvements in real-world data
-analytic practice.
+TMLE (C-TMLE) for confounder selection (and, time permitting, adaptive TMLE
+(A-TMLE) for hybrid designs that combine experimental and external data); TMLE
+algorithms to estimate the causal effects of interventions on binary and
+continuous exposures; complications for addressing time-varying confounding
+and/or censoring; and incorporating machine learning via the super learner and
+highly adaptive lasso algorithms. This short course incorporates a mix of case
+studies, discussion, and hands-on programming exercises to allow participants
+to build familiarity with techniques and tools that will translate to
+improvements in real-world data analytic practice.
 
 
 ## Recommended background
