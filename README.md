@@ -1,5 +1,7 @@
 # `tlverse` workshop template [![Booklet](https://github.com/tlverse/tlverse-workshops/actions/workflows/bookdown.yml/badge.svg)](https://github.com/tlverse/tlverse-workshops/actions/workflows/bookdown.yml) [![Binder](http://mybinder.org/badge_logo.svg)](http://mybinder.org/v2/gh/tlverse/tlverse-workshops/master?urlpath=rstudio)
 
+https://catalyst.harvard.edu/calendar/event/biostatistics-short-course-targeted-learning-bridging-machine-learning-with-causal-and-statistical-inference-november-15/
+
 Welcome to the GitHub repository for a full-day introductory workshop on
 Targeted Learning with the `tlverse` software ecosystem. This repository serves
 as a template for academic conference workshops as well as invited short
