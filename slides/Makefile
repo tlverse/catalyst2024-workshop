@@ -1,8 +1,8 @@
 TITLE = catalyst2024slides
 
-all: $(TITLE).pdf clean
+all: slides clean
 
-$(TITLE).pdf:
+slides:
 	xelatex $(TITLE)
 	xelatex $(TITLE)
 

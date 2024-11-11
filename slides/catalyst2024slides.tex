@@ -20,7 +20,7 @@
 \usepackage{xmpmulti}
 \usepackage{subfig}
 \usepackage{media9}
-
+\usepackage{appendixnumberbeamer}
 
 \usetheme{PaloAlto}
 \usecolortheme{seahorse}
@@ -45,7 +45,7 @@ bg= blue!5}
 
 
 \title{{\bf Targeted Learning}}
-\subtitle{The bridge from machine learning\\to statistical and causal inference}
+\subtitle{Bridging Machine Learning with Causal and Statistical Inference}
 \author{Mark van der Laan\inst{1} and Nima Hejazi\inst{2}}
 
 \institute{
@@ -57,7 +57,7 @@ bg= blue!5}
 15\textsuperscript{th} November 2024\\[2pt]
 Harvard Catalyst Workshop
 \\[2pt]
-{\tiny Acknowledgements: Alan Hubbard, Ivana Malenica, Rachael
+{\tiny Acknowledgements: Susan Gruber, Alan Hubbard, Ivana Malenica, Rachael
 Phillips, Lars van der Laan}
 }
 
@@ -79,15 +79,15 @@ Phillips, Lars van der Laan}
 \end{figure}
 \end{frame}
 
-\begin{frame}
-\frametitle{A traditional toolbox for statistics}
-\vspace{-12pt}
-\centering
-\begin{figure}
-\includegraphics[width=0.5\textwidth]{figures/stat-tests.png}
-% Source: https://www.graphpad.com/support/faqid/1790/
-\end{figure}
-\end{frame}
+% \begin{frame}
+% \frametitle{A traditional toolbox for statistics}
+% \vspace{-12pt}
+% \centering
+% \begin{figure}
+% \includegraphics[width=0.5\textwidth]{figures/stat-tests.png}
+% % Source: https://www.graphpad.com/support/faqid/1790/
+% \end{figure}
+% \end{frame}
 
 \begin{frame}
 \frametitle{A traditional toolbox for statistics}
@@ -95,8 +95,12 @@ Phillips, Lars van der Laan}
 \centering
 \begin{figure}
 \includegraphics[width=0.9\textwidth]{figures/parametric.png}
-\vspace{0.5em}
-Should the model define the question (parameter)?
+\vspace{1em}
+\begin{itemize}
+  \item Traditional: Data $+$ Model $\rightarrow$ Question (parameter)
+  \item Agnostic: Question (parameter) $+$ Data $\rightarrow$ Model
+  \item Which of these is better aligned with the scientific process?
+\end{itemize}
 \end{figure}
 
 \end{frame}
@@ -135,6 +139,14 @@ Truth: No effect of exposure on outcome.
 \end{frame}
 
 \section{TL in Action}
+
+\begin{frame}
+  \frametitle{TL answers statistical questions rooted in causality}
+  \vspace{-1em}
+  \begin{center}
+  \includegraphics[width=0.84\textwidth]{figures/schematic-fixed.pdf}
+  \end{center}
+\end{frame}
 
 \begin{frame}
 \frametitle{Public health and medicine use real-world data (RWD) for insight
@@ -280,14 +292,6 @@ Truth: No effect of exposure on outcome.
 \end{frame}
 
 \section{TL Roadmap}
-
-\begin{frame}
-  \frametitle{TL answers statistical questions rooted in causality}
-  \vspace{-1em}
-  \begin{center}
-  \includegraphics[width=0.84\textwidth]{figures/schematic-fixed.pdf}
-  \end{center}
-\end{frame}
 
 \begin{frame}
   \frametitle{A roadmap for learning from data}
@@ -441,6 +445,31 @@ Truth: No effect of exposure on outcome.
 \end{frame}
 
 \begin{frame}
+  \frametitle{Why plug-in estimation?}
+  \begin{itemize}
+    \item Consider a data unit $O = (W, A, Y)$, where $O \sim P_0 \in
+      \mathcal{M}$ for $P_0$ the data-generating distribution in a model
+      $\mathcal{M}$.
+    \item A \textit{plug-in} estimator $\Psi(\hat{P}_n)$ is based on the
+      parameter mapping, where the target parameter is $\Psi(P_0)$ and
+      $\hat{P}_n$ is an estimator of $P_0$.
+    \item $\Psi(P_0) = \mathbb{E}_0\{\mathbb{E}_0[Y \mid A = 1, W] -
+      \mathbb{E}_0[Y \mid A = 0, W]\}$, the ATE functional, can be approximated
+      by recognizing that:
+      \begin{itemize}
+        \item Components of $P_0$ that impact the plug-in estimator are the
+          conditional mean $\bar{Q}_0(A,W) = \mathbb{E}[Y \mid A, W]$ and the
+          marginal distribution of $W$, $Q_{0,W}$.
+        \item Thus, the plug-in estimator depends on estimates of these:
+          $\bar{Q}_n(A,W) = \hat{\mathbb{E}}[Y \mid A, W]$ and $Q_{n,W} =
+          P_n(W = w)$.
+      \end{itemize}
+    \item By construction, plug-in estimators remain within the bounds of the
+      parameter space.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
   \frametitle{Targeted Maximum Likelihood Estimation (TMLE)}
   \vspace{-20pt}
   \begin{center}
@@ -565,55 +594,13 @@ Truth: No effect of exposure on outcome.
 \subsection{Obtain inference}
 
 \begin{frame}
-  \frametitle{How should we approximate the sampling distribution of our estimator?}
-  \vspace{-20pt}
-  \begin{center}
-  \includegraphics[width = 1.05\textwidth]{figures/roadmap5.pdf}
-  \end{center}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Why plug-in estimation?}
-  \begin{itemize}
-    \item Consider a data unit $O = (W, A, Y)$, where $O \sim P_0 \in
-      \mathcal{M}$ for $P_0$ the data-generating distribution in a model
-      $\mathcal{M}$.
-    \item A \textit{plug-in} estimator $\Psi(\hat{P}_n)$ is based on the
-      parameter mapping, where the target parameter is $\Psi(P_0)$ and
-      $\hat{P}_n$ is an estimator of $P_0$.
-    \item $\Psi(P_0) = \mathbb{E}_0\{\mathbb{E}_0[Y \mid A = 1, W] -
-      \mathbb{E}_0[Y \mid A = 0, W]\}$, the ATE functional, can be approximated
-      by recognizing that:
-      \begin{itemize}
-        \item Components of $P_0$ that impact the plug-in estimator are the
-          conditional mean $\bar{Q}_0(A,W) = \mathbb{E}[Y \mid A, W]$ and the
-          marginal distribution of $W$, $Q_{0,W}$.
-        \item Thus, the plug-in estimator depends on estimates of these:
-          $\bar{Q}_n(A,W) = \hat{\mathbb{E}}[Y \mid A, W]$ and $Q_{n,W} =
-          P_n(W = w)$.
-      \end{itemize}
-    \item By construction, plug-in estimators remain within the bounds of the
-      parameter space.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{TMLE Overview}
-  \begin{itemize}
-    \item TMLE produces an unbiased, efficient substitution estimator of target
-      parameters of a data-generating distribution $P_0$.
-    \item A TMLE algorithm is an iterative procedure that updates an initial
-      estimates of relevant components of $Q_0$ of $P_0$, often requiring an
-      estimate of a nuisance parameter $g_0$.
-      \begin{itemize}
-        \item Initial estimates of $(g_n, \bar{Q}_n)$ of nuisance parameters
-          $(g_0, \bar{Q}_0)$ may be obtained via super learning.
-        \item These initial estimates are then updated so that the relevant
-          component $\bar{Q}_n$ solves an estimating equation.
-      \end{itemize}
-    \item The updating step is a parametric fluctuation that updates $\bar{Q}_n$
-      to $\bar{Q}_n^{\star}$ based on the nuisance function $g_0$.
-  \end{itemize}
+\frametitle{TMLE: Targeting by following a path of maximal change in target estimand per unit likelihood}
+\vspace{-13pt}
+\centering
+\begin{figure}
+\centering
+\animategraphics[autoplay,loop,width=0.92\linewidth]{7}{figures/ULFS_n400/gganim_plot}{0001}{0100}
+\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -651,16 +638,6 @@ Truth: No effect of exposure on outcome.
 \end{frame}
 
 \begin{frame}
-\frametitle{TMLE: Targeting by following a path of maximal change in target estimand per unit likelihood}
-\vspace{-12pt}
-\centering
-\begin{figure}
-\centering
-\animategraphics[autoplay,loop,width=0.95\linewidth]{7}{ULFS_n400/gganim_plot}{0001}{0100}
-\end{figure}
-\end{frame}
-
-\begin{frame}
   \frametitle{Asymptotic Linearity of the TMLE}
   \begin{itemize}
     \item The TMLE $\Psi(P_n^{\star})$ is a RAL estimator, from which it follows
@@ -673,11 +650,38 @@ Truth: No effect of exposure on outcome.
       distribution of the TMLE (by the CLT):
       $$\sqrt{n}(\Psi(P_n^{\star}) - \Psi(P_0)) \xrightarrow{d} \text{N}(0,
         \sigma^2) \ ,$$ where $\sigma^2 = \mathbb{V}(\text{IC}(P_0)(O))$ is the
-        asymptotic variance of the EIF.
+        asymptotic variance of the EIF at $P_0 \in \mathcal{M}$.
     \item $\text{IC}(P_0)(O)$ depends on both $(g_0, Q_0)$, the source of the
       TMLE update's dependence on $g_0$.
   \end{itemize}
 \end{frame}
+
+\begin{frame}
+  \frametitle{How should we approximate the sampling distribution of our estimator?}
+  \vspace{-20pt}
+  \begin{center}
+  \includegraphics[width = 1.05\textwidth]{figures/roadmap5.pdf}
+  \end{center}
+\end{frame}
+
+% \begin{frame}
+%   \frametitle{TMLE Overview}
+%   \begin{itemize}
+%     \item TMLE produces an unbiased, efficient substitution estimator of target
+%       parameters of a data-generating distribution $P_0$.
+%     \item A TMLE algorithm is an iterative procedure that updates an initial
+%       estimates of relevant components of $Q_0$ of $P_0$, often requiring an
+%       estimate of a nuisance parameter $g_0$.
+%       \begin{itemize}
+%         \item Initial estimates of $(g_n, \bar{Q}_n)$ of nuisance parameters
+%           $(g_0, \bar{Q}_0)$ may be obtained via super learning.
+%         \item These initial estimates are then updated so that the relevant
+%           component $\bar{Q}_n$ solves an estimating equation.
+%       \end{itemize}
+%     \item The updating step is a parametric fluctuation that updates $\bar{Q}_n$
+%       to $\bar{Q}_n^{\star}$ based on the nuisance function $g_0$.
+%   \end{itemize}
+% \end{frame}
 
 \begin{frame}
   \frametitle{Coding exercise: TMLE with \texttt{tmle3}}
@@ -695,9 +699,7 @@ Truth: No effect of exposure on outcome.
 \end{frame}
 
 \begin{frame}
-\frametitle{TL-based non-parametric sensitivity analysis:
-
-RCT with 25\% LTFU example}
+\frametitle{TL-based non-parametric sensitivity analysis: RCT with 25\% LTFU}
 \vspace{-10pt}
   \begin{center}
   \includegraphics[width = 1.05\textwidth]{figures/gruber_sensitivity.png}
@@ -719,18 +721,16 @@ RCT with 25\% LTFU example}
   \frametitle{Possibility to refine question of interest and inform future studies}
   \vspace{-11pt}
   \begin{center}
-  \includegraphics[width = 1.0\textwidth]{figures/roadmap_alt1.pdf}
+  \includegraphics[width = 0.85\textwidth]{figures/subgroup.png}
   \end{center}
 \end{frame}
-
 
 \section{Advanced TL}
 
 \subsection{Regularizing TMLE}
 
-\begin{frame}\frametitle{Outcome blind simulations to a priori define TMLE: Wyss
-et al., 2023}
-
+\begin{frame}
+\frametitle{Outcome blind simulations to a priori define TMLE: Wyss et al., 2023}
 \centering
 \begin{figure}
 \begin{center}
@@ -751,6 +751,14 @@ Studies}
 \end{center}
 \end{figure}
 %\vspace{35pt}
+\end{frame}
+
+\begin{frame}
+\frametitle{Background on OAL and C-TMLE}
+\begin{itemize}
+  \item add background slides on OAL 
+  \item add overview slide for C-TMLE
+\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -1006,77 +1014,6 @@ $D^{(0)}([0,1]^d)$.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Higher order spline HAL}
-\begin{itemize}
-\item Analogue as above, we can define $D^{(k)}_M([0,1]^d)\subset D^{(k-1)}([0,1]^d)$ as class of $k$-th order smooth functions with $k$-th order sectional variation norm bounded by $M$.
-\item Analogue we obtain a $k$-th order spline representation for $f\in D^{(k)}([0,1]^d)$; a finite dimensional linear working model $D^{(k)}({\cal R}^k_N)$ approximating $D^{(k)}([0,1]^d)$ and a corresponding $k$-th order spline HAL-MLE:
-\[
-f_n=\arg\min_{f\in D^{(k)}_{M_n}({\cal R}^k_N)}P_n L(Q_f),\]
-and $Q_n=Q_{f_n}$.
-\item With $J$ well chosen $k$-th order spline basis functions we can obtain an $O^+(1/J^{k+1})$ sup-norm approximation of $D^{(k)}([0,1]^d)$ .
-\end{itemize}
-\end{frame}
-\begin{frame}
-\begin{itemize}
-\item As a consequence, we now have
-$J(\delta,D^{(k)}_M([0,1]^d),\lVert\cdot\rVert_{\infty})=O^+(\delta^{(2k+1)/(2k+2)})$.
-\item Our rate of convergence proof now yields:
-\[
-d_0(Q_n^k,Q_0)=O^+_P(n^{-2k^{\star}/(2k^{\star}+1)}),\]
-with $k^{\star}=k+1$.
-\item For example, for $k=0,1,2$, we have the dimension free rates $O_P^+(n^{-1/3})$, $O_P^+(n^{-2/5})$ and $O_P^+(n^{-3/7})$, respectively.
-\end{itemize}
-\end{frame}
-\begin{frame}{Discrete Super Learner incorporating  higher order HAL}
-\begin{itemize}
-    \item By varying smoothness degree $k$ and starting sets ${\cal R}^k(j)$ of basis functions, one can define many HAL-MLEs over  $D^{(k)}_C({\cal R}^k(j))$.
-    \item The discrete super learner using this library of $(k,j)$-specific HAL-MLEs will perform asymptotically exact as well as the oracle choice among all these HAL estimators,  thereby achieves the rate of convergence of HAL for the unknown smoothness $k_0$  and smallest subspace $D^{(k_0)}({\cal R}_{j_0}(d))$ containing true $Q_0$.
-    \item Thus this cross-validated higher order HAL-MLE is minimax {\bf smoothness adaptive} achieving the minimax smoothness adaptive rate of convergence for univariate function estimation, up till $\log n$-factors.
-%    \item Can include other machine learning algorithms and parametric models as well.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Asymptotic normality of higher order HAL}
-\begin{itemize}
-\item Let ${\cal R}_n$ be a set of $J_n$ $k$-th order splines  providing uniform approximation error $O^+(1/J_n^{k+1})$.
-\item The non-zero coefficients in the HAL-fit  does this for us when we choose a fine enough starting model.
-\item In addition, HAL will select an adaptive selection that works best for $Q_0$.
-\item Let $D^{(k)}({\cal R}_n)$ be the linear working model. This set yields the $O(1/J_n^{k+1})$-uniform approximation of $Q_0$.
- \item The HAL-MLE $Q_n=\sum_{j\in {\cal R}_n}\beta_n(j)\phi_j$ operates as an MLE of the oracle approximation $Q_{0,n}=\sum_{j\in {\cal R}_n}\beta_{0,n}(j)\phi_j$ in this working model.
- \end{itemize}
-\end{frame}
-
-\begin{frame}
- \begin{itemize}
- \item In particular, if we do the relax-HAL (refitting the selected working model without $L_1$-penalty), then it is an exact MLE of $Q_{0,n}$.
- \item One can analyze this parametric MLE $Q_n^k$ w.r.t. $Q_{0,n}$ to establish that  $(J_n/n)^{1/2}(Q_n-Q_{0,n})(x)\Rightarrow_d N(0,\sigma^2_0(x))$, while, by our uniform approximation result $|| Q_{0,n}-Q_0 ||_{\infty}\sim O^+(1/J_n^{k+1})$.
- \end{itemize}
-\end{frame}
-
-\begin{frame}{Asymptotic normality and uniform rates}
-\begin{itemize}
-\item By selecting $J_n\sim n^{-1/(k+2)}$, the pointwise rate equals
-$n^{-k^{\star}/(2k^{\star}+1)}$ up till $\log n$-factors.
-\item At cost of another $\log n$-factor this rate is uniform in $x$.
-\item Pointwise and uniform confidence intervals follow.
-\item Beyond inference for $Q_0$, these results teach us that we have dimension
-free {\bf uniform} rates of convergence for $\lVert
-Q_n-Q_0\rVert_{\infty}=O^+(n^{-k^{\star}/(2k^{\star}+1)})$.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{New Results: Asymptotic normality of higher order HAL-MLE itself, van der Laan, 2023}
-\begin{itemize}
-\item Defined higher order smoothness classes $D^{(k)}_C([0,1]^d)$ with global complexity measure $C$, $k=0,\ldots$.
-\item We define MLE over this model ($k$-th order HAL).
-\item $D^{(k)}_C([0,1]^d)$ can be represented as linear span of tensor products of $\leq k$-th order spline basis functions, where  $L_1$-norm is bounded by $C$.
-\item So implementation can be carried out with glmnet().
-\item With $J$ basis functions, one obtains uniform approximation error $O(1/J^{k^*})$ up till $\log J$-factor, $k^*=k+1$.
- \item HAL-MLE $Q_n=\sum_{j\in {\cal R}_n}\beta_n(j)\phi_j$ with $J_n$  non-zero coefficients of its oracle MLE  $Q_{0,n}=\sum_{j\in {\cal R}_n}\beta_{0,n}(j)\phi_j$ satisfies $(J_n/n)^{1/2}(Q_n-Q_{0,n})(x)\Rightarrow_d N(0,\sigma^2_0(x))$, while $|| Q_{0,n}-Q_0 ||_{\infty}\sim O(1/J_n^{k^*})$.
-\item By selecting $J_n\sim n^{1/(k^*+1)}$, rate equals $n^{-k^*/(2k^*+1)}$ up till $\log n$-factors. HAL will do this for you.
-\end{itemize}
-\end{frame}
-
 \begin{frame}{New Results on higher order HAL-MLE}
 \begin{itemize}
 \item So first order HAL converges at rate $n^{-2/5}$ pointwise, ignoring $\log n$-factors.
@@ -1154,59 +1091,6 @@ For each bootstrap sample $P_n^{\#}$, recompute the HAL-TMLE$(M)$, say ${\bf P}_
  \end{itemize}
 \end{frame}
 
-\begin{frame}{Super-efficient estimation for smooth features of target function}
-\begin{itemize}
-\item The smoothness adaptive HAL (using cross-validation to select $k$ and additive submodel $D^{(k)}({\cal R}_{j_0})$) will asymptotically act like an HAL for an oracle smoothness $k_0$ and oracle subspace $D^{(k_0)}({\cal R}_{j_0}(d))$.
-\item As a consequence, by undersmoothing within the oracle subspace it will be plug-in efficient for smooth target features w.r.t. the oracle statistical model on the data distribution that assumes $Q_0\in D^{(k_0)}({\cal R}_{j_0}(d))$.
-\item That is, $\Psi(Q_n)$ is asymptotically super-efficient, and is an example of the Adaptive MLE of  (Lars van der Laan et al., 2023).
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Finite sample robust TMLE}
-\begin{itemize}
-\item The current literature on TMLE has proposed various modifications of TMLE that regularize the TMLE to be better behaved in finite samples when the support is limited (i.e., practical violation of positivity assumption).
-\item For example, in censored and causal inference literature: adaptive truncation; regularize TMLE step by not fully solving EIC-equation; collaborative TMLE; outcome-adaptive TMLE; super-efficient TMLE (adjusting in PS for outcome regressions $Q_n(1,W),Q_n(0,W)$, beyond a possible baseline model).
-\item These proposed regularizations have in common that they all concern targeted estimation of the orthogonal nuisance function $g(P_0)$ that is needed in targeting step, while $\Psi(P_0)=\Psi_1(Q_0)$ only depends on certain factors of likelihood.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\begin{itemize}
-\item Typically, these variations preserve asymptotic efficiency but adapt the targeting step towards the data to carefully trade-off bias reduction with variance gain.
-\item Finite sample simulations, theoretical results such as collaborative double robustness etc, have shown that these regularizations are crucial for robust finite sample behavior for poorly supported parameters.
-\item However, we never developed a truly unifying approach (and super-efficiency theory)!
-\item Fortunately, Lars did: Lars van der Laan et al. (2023), Adaptive debiased machine learning.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Limitations of Efficient Estimators such as TMLE}
-\begin{itemize}
-\item Due to lack of nonparametric support, if ${\cal M}$ is close to nonparametric, then
-$D^*_{P_0}(o)$ can have very large values.
-\item In that case, confidence intervals for standard TMLE will be wide and no significant finding can be obtained.
-\item However if we would use plug-in HAL $\Psi({\bf P}_n)$ (possibly super-efficient) we might very well still find a significant true result. Somehow, the targeting step can blow up a good initial estimator.
-\item This is due to an efficient estimator to be regular along all paths through $P_0$, including paths that appear to be contradicting the data.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{An efficient estimator cannot adapt to structure in the true data distribution}
-\begin{itemize}
-\item For example, suppose $O=(W,A,Y)$ and $\Psi(P)=E_PE_P(Y\mid A=1,W)$. A plug-in HAL might end up fitting an additive model for the regression $E(Y\mid A,W)$ that contains the true regression.
-\item An efficient estimator of $\Psi(P_0)$ for this additive model would be well supported and have reasonable variance.
-\item But an efficient estimator for a nonparametric model protects itself against any kind of fluctuation of the data distribution, and as a consequence carries out a bias reduction that ({\bf asymptotically}) holds up uniform in $P$ in a ball around $P_0$.
-\item In other words, it needs to remain asympotically unbiased under fluctuations adding a 100 way interaction.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Lets reset benchmarks for our estimator}
-\begin{itemize}
-\item {\bf Super-efficient estimator:}
-Suppose that we require that our estimator of $\Psi(P_0)$ is asymptotically linear at any $P_0\in {\cal M}$, and regular along paths through $P_0$ that stay in an oracle model ${\cal M}_0\subset {\cal M}$, approximated by a data adaptive submodel ${\cal M}_n$ satisfying $P_0\in {\cal M}_0$.
-\item Then, we can construct ${\cal M}_0$-super-efficient estimators that still provide asymptotically valid confidence interval and are still robust under perturbations of $P_0$ that stay in the model ${\cal M}_0$.
-\item {\bf Regularized efficient estimator:} If our data adaptive model ${\cal M}_n$ approximates ${\cal M}_0={\cal M}$, let the estimator behave as an efficient estimator under model ${\cal M}_n$ that approximates the a-priori specified model ${\cal M}$ as sample size converges to infinity but in a way that carefully balances finite sample bias and variance.
-\end{itemize}
-\end{frame}
-
 \begin{frame}
 \frametitle{Adaptive TMLE}
 \begin{itemize}
@@ -1230,52 +1114,14 @@ based on $D_{\mathcal{M}_n,P_0}$.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Why does A-TMLE work: 1) standard TMLE analysis}
-\begin{itemize}
-\item From TMLE analysis we will have that $\Psi_{{\cal M}_n}(P_n^*)-\Psi_{{\cal M}_n}(P_0)$ behaves as $(P_n-P_0)D^*_{{\cal M}_n,P_0}$. Therefore, under an asymptotic stability condition on ${\cal M}_n$ so that $D^*_{{\cal M}_n,P_0}\rightarrow_p D^*_{{\cal M}_0,P_0}$ we have that it behaves as $P_n D^*_{{\cal M}_0,P_0}$ and is thus asymptotically normal with mean zero and variance $\sigma^2_{{\cal M}_0}(P_0)=P_0\{D^*_{{\cal M}_0,P_0}\}^2$.
-\item Cross-fitting weakens this need for asymptotic stability. Moreover, one might still have asymptotic normality by standardizing by a variance estimator.
-\item $D^*_{{\cal M}_0,P_0}$ equals the efficient influence curve of $\Psi:{\cal
-M}_0\rightarrow \mathbb{R}$: i.e. we achieve the efficiency we would achieve with TMLE if we would  a priori know that $P_0\in {\cal M}_0$.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Why does A-TMLE work: 2) data adaptive model bias negligible}
-\begin{itemize}
-\item Let $R_{{\cal M}_0}(P,P_0)=\Psi_{{\cal M}_0}(P)-\Psi_{{\cal M}_0}(P_0)+P_0 D^*_{{\cal M}_0,P}$.
-\item We have
-\[
-\begin{array}{l}
-\Psi_{{\cal M}_n}(P_0)-\Psi(P_0)=\\
-(P_{0,n}-P_0)\{D^*_{{\cal M}_0,P_{0,n}}-\Pi_n(D^*_{{\cal M}_0,P_{0,n}}\mid T_{{\cal  M}_n}(P_{0,n}))\}\\
-\hfill +R_{{\cal M}_0}(P_{0,n},P_0),
-\end{array}
-\]
-where the projection $\Pi_n$ projects $D^*_{{\cal M}_0,P_{0,n}}$ onto tangent space of ${\cal M}_n$ at $P_{0,n}$.
-\end{itemize}
-\end{frame}
 
 \begin{frame}
+\frametitle{Adaptive TMLE}
 \begin{itemize}
-\item This is a very nice second order remainder (i.e., $o_P(n^{-1/2})$).
-\item Therefore, our adaptive TMLE is asymptotically linear estimator of $\Psi(P_0)$ with (super-efficient) influence curve $D^*_{{\cal M}_0,P_0}$.
-\item Since it operates as an efficient estimator of $\Psi_{{\cal M}_n}(P_0)$ it will also be regular along any path through $P_0$ that stays in the limit oracle model ${\cal M}_0$.
+  \item add slides on application of A-TMLE from Duke talk
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Inverse Probability of Treatment/Censoring Weighted Estimators using HAL (Ertefaie, Hejazi, vdL, 2023)}
-\begin{itemize}
-\item Let $O=\Phi(C,X)$, $P_X\in {\cal M}^F$, $G_{C\mid X}$ satisfying CAR, and let $\Psi^F(P_X) $ be the target.
-\item One can then construct IPCW-estimators $\psi_{n,IPCW}$ as solutions of $P_n U_{G_n}(D^F(\psi))=0$ in $\psi$ with $U_G(D^F)(O)$ an inverse probability weighted full-data estimating function $D^F$ satisfying $E_G(U_G(D^F)(O)\mid X)=D^F(X)$.
-\item By using undersmoothed HAL as estimator of the censoring mechanism $G$, the HAL-IPCW estimator $\psi_{n,IPCW}$  is asymptotically linear with influence curve the IPCW-function $U_G(D^F(\psi))$ minus its projection on the tangent space $T_{CAR}$.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\begin{itemize}
-\item In particular, for nonparametric full-data models, the IPCW-estimator using undersmoothed HAL is asymptotically efficient.
-\item Similarly, if one uses HAL to estimate $G$ for double robust estimators, then inference and efficiency is preserved under misspecified estimators of the full data distribution $P_X$.
-\end{itemize}
-\end{frame}
 
 \subsection{Longitudinal TMLE}
 
@@ -1502,6 +1348,177 @@ Nima's email: \texttt{nhejazi@hsph.harvard.edu}
 
 %\vspace{10pt}
 %Rachael's email: rachaelvphillips@berkeley.edu
-
 \end{frame}
+
+% backup slides go here
+\appendix
+
+\begin{frame}
+\centering
+\usebeamerfont{title}
+\usebeamercolor[fg]{title}
+  \appendixname
+\end{frame}
+
+\begin{frame}{Higher order spline HAL}
+\begin{itemize}
+\item Analogue as above, we can define $D^{(k)}_M([0,1]^d)\subset
+  D^{(k-1)}([0,1]^d)$ as class of $k$-th order smooth functions with $k$-th
+  order sectional variation norm bounded by $M$.
+\item Analogue we obtain a $k$-th order spline representation for $f\in
+  D^{(k)}([0,1]^d)$; a finite dimensional linear working model $D^{(k)}({\cal
+  R}^k_N)$ approximating $D^{(k)}([0,1]^d)$ and a corresponding $k$-th order
+  spline HAL-MLE:
+\[
+f_n=\arg\min_{f\in D^{(k)}_{M_n}({\cal R}^k_N)}P_n L(Q_f),\]
+and $Q_n=Q_{f_n}$.
+\item With $J$ well chosen $k$-th order spline basis functions we can obtain an $O^+(1/J^{k+1})$ sup-norm approximation of $D^{(k)}([0,1]^d)$ .
+\end{itemize}
+\end{frame}
+\begin{frame}
+\begin{itemize}
+\item As a consequence, we now have
+$J(\delta,D^{(k)}_M([0,1]^d),\lVert\cdot\rVert_{\infty})=O^+(\delta^{(2k+1)/(2k+2)})$.
+\item Our rate of convergence proof now yields:
+\[
+d_0(Q_n^k,Q_0)=O^+_P(n^{-2k^{\star}/(2k^{\star}+1)}),\]
+with $k^{\star}=k+1$.
+\item For example, for $k=0,1,2$, we have the dimension free rates $O_P^+(n^{-1/3})$, $O_P^+(n^{-2/5})$ and $O_P^+(n^{-3/7})$, respectively.
+\end{itemize}
+\end{frame}
+\begin{frame}{Discrete Super Learner incorporating  higher order HAL}
+\begin{itemize}
+    \item By varying smoothness degree $k$ and starting sets ${\cal R}^k(j)$ of basis functions, one can define many HAL-MLEs over  $D^{(k)}_C({\cal R}^k(j))$.
+    \item The discrete super learner using this library of $(k,j)$-specific HAL-MLEs will perform asymptotically exact as well as the oracle choice among all these HAL estimators,  thereby achieves the rate of convergence of HAL for the unknown smoothness $k_0$  and smallest subspace $D^{(k_0)}({\cal R}_{j_0}(d))$ containing true $Q_0$.
+    \item Thus this cross-validated higher order HAL-MLE is minimax {\bf smoothness adaptive} achieving the minimax smoothness adaptive rate of convergence for univariate function estimation, up till $\log n$-factors.
+%    \item Can include other machine learning algorithms and parametric models as well.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Asymptotic normality of higher order HAL}
+\begin{itemize}
+\item Let ${\cal R}_n$ be a set of $J_n$ $k$-th order splines  providing uniform approximation error $O^+(1/J_n^{k+1})$.
+\item The non-zero coefficients in the HAL-fit  does this for us when we choose a fine enough starting model.
+\item In addition, HAL will select an adaptive selection that works best for $Q_0$.
+\item Let $D^{(k)}({\cal R}_n)$ be the linear working model. This set yields the $O(1/J_n^{k+1})$-uniform approximation of $Q_0$.
+ \item The HAL-MLE $Q_n=\sum_{j\in {\cal R}_n}\beta_n(j)\phi_j$ operates as an MLE of the oracle approximation $Q_{0,n}=\sum_{j\in {\cal R}_n}\beta_{0,n}(j)\phi_j$ in this working model.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+ \begin{itemize}
+ \item In particular, if we do the relax-HAL (refitting the selected working model without $L_1$-penalty), then it is an exact MLE of $Q_{0,n}$.
+ \item One can analyze this parametric MLE $Q_n^k$ w.r.t. $Q_{0,n}$ to establish that  $(J_n/n)^{1/2}(Q_n-Q_{0,n})(x)\Rightarrow_d N(0,\sigma^2_0(x))$, while, by our uniform approximation result $|| Q_{0,n}-Q_0 ||_{\infty}\sim O^+(1/J_n^{k+1})$.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}{Asymptotic normality and uniform rates}
+\begin{itemize}
+\item By selecting $J_n\sim n^{-1/(k+2)}$, the pointwise rate equals
+$n^{-k^{\star}/(2k^{\star}+1)}$ up till $\log n$-factors.
+\item At cost of another $\log n$-factor this rate is uniform in $x$.
+\item Pointwise and uniform confidence intervals follow.
+\item Beyond inference for $Q_0$, these results teach us that we have dimension
+free {\bf uniform} rates of convergence for $\lVert
+Q_n-Q_0\rVert_{\infty}=O^+(n^{-k^{\star}/(2k^{\star}+1)})$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{New Results: Asymptotic normality of higher order HAL-MLE itself, van der Laan, 2023}
+\begin{itemize}
+\item Defined higher order smoothness classes $D^{(k)}_C([0,1]^d)$ with global complexity measure $C$, $k=0,\ldots$.
+\item We define MLE over this model ($k$-th order HAL).
+\item $D^{(k)}_C([0,1]^d)$ can be represented as linear span of tensor products of $\leq k$-th order spline basis functions, where  $L_1$-norm is bounded by $C$.
+\item So implementation can be carried out with glmnet().
+\item With $J$ basis functions, one obtains uniform approximation error $O(1/J^{k^*})$ up till $\log J$-factor, $k^*=k+1$.
+ \item HAL-MLE $Q_n=\sum_{j\in {\cal R}_n}\beta_n(j)\phi_j$ with $J_n$  non-zero coefficients of its oracle MLE  $Q_{0,n}=\sum_{j\in {\cal R}_n}\beta_{0,n}(j)\phi_j$ satisfies $(J_n/n)^{1/2}(Q_n-Q_{0,n})(x)\Rightarrow_d N(0,\sigma^2_0(x))$, while $|| Q_{0,n}-Q_0 ||_{\infty}\sim O(1/J_n^{k^*})$.
+\item By selecting $J_n\sim n^{1/(k^*+1)}$, rate equals $n^{-k^*/(2k^*+1)}$ up till $\log n$-factors. HAL will do this for you.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Super-efficient estimation for smooth features of target function}
+\begin{itemize}
+\item The smoothness adaptive HAL (using cross-validation to select $k$ and additive submodel $D^{(k)}({\cal R}_{j_0})$) will asymptotically act like an HAL for an oracle smoothness $k_0$ and oracle subspace $D^{(k_0)}({\cal R}_{j_0}(d))$.
+\item As a consequence, by undersmoothing within the oracle subspace it will be plug-in efficient for smooth target features w.r.t. the oracle statistical model on the data distribution that assumes $Q_0\in D^{(k_0)}({\cal R}_{j_0}(d))$.
+\item That is, $\Psi(Q_n)$ is asymptotically super-efficient, and is an example of the Adaptive MLE of  (Lars van der Laan et al., 2023).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Finite sample robust TMLE}
+\begin{itemize}
+\item The current literature on TMLE has proposed various modifications of TMLE that regularize the TMLE to be better behaved in finite samples when the support is limited (i.e., practical violation of positivity assumption).
+\item For example, in censored and causal inference literature: adaptive truncation; regularize TMLE step by not fully solving EIC-equation; collaborative TMLE; outcome-adaptive TMLE; super-efficient TMLE (adjusting in PS for outcome regressions $Q_n(1,W),Q_n(0,W)$, beyond a possible baseline model).
+\item These proposed regularizations have in common that they all concern targeted estimation of the orthogonal nuisance function $g(P_0)$ that is needed in targeting step, while $\Psi(P_0)=\Psi_1(Q_0)$ only depends on certain factors of likelihood.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Typically, these variations preserve asymptotic efficiency but adapt the targeting step towards the data to carefully trade-off bias reduction with variance gain.
+\item Finite sample simulations, theoretical results such as collaborative double robustness etc, have shown that these regularizations are crucial for robust finite sample behavior for poorly supported parameters.
+\item However, we never developed a truly unifying approach (and super-efficiency theory)!
+\item Fortunately, Lars did: Lars van der Laan et al. (2023), Adaptive debiased machine learning.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Limitations of Efficient Estimators such as TMLE}
+\begin{itemize}
+\item Due to lack of nonparametric support, if ${\cal M}$ is close to nonparametric, then
+$D^*_{P_0}(o)$ can have very large values.
+\item In that case, confidence intervals for standard TMLE will be wide and no significant finding can be obtained.
+\item However if we would use plug-in HAL $\Psi({\bf P}_n)$ (possibly super-efficient) we might very well still find a significant true result. Somehow, the targeting step can blow up a good initial estimator.
+\item This is due to an efficient estimator to be regular along all paths through $P_0$, including paths that appear to be contradicting the data.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{An efficient estimator cannot adapt to structure in the true data distribution}
+\begin{itemize}
+\item For example, suppose $O=(W,A,Y)$ and $\Psi(P)=E_PE_P(Y\mid A=1,W)$. A plug-in HAL might end up fitting an additive model for the regression $E(Y\mid A,W)$ that contains the true regression.
+\item An efficient estimator of $\Psi(P_0)$ for this additive model would be well supported and have reasonable variance.
+\item But an efficient estimator for a nonparametric model protects itself against any kind of fluctuation of the data distribution, and as a consequence carries out a bias reduction that ({\bf asymptotically}) holds up uniform in $P$ in a ball around $P_0$.
+\item In other words, it needs to remain asympotically unbiased under fluctuations adding a 100 way interaction.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Lets reset benchmarks for our estimator}
+\begin{itemize}
+\item {\bf Super-efficient estimator:}
+Suppose that we require that our estimator of $\Psi(P_0)$ is asymptotically linear at any $P_0\in {\cal M}$, and regular along paths through $P_0$ that stay in an oracle model ${\cal M}_0\subset {\cal M}$, approximated by a data adaptive submodel ${\cal M}_n$ satisfying $P_0\in {\cal M}_0$.
+\item Then, we can construct ${\cal M}_0$-super-efficient estimators that still provide asymptotically valid confidence interval and are still robust under perturbations of $P_0$ that stay in the model ${\cal M}_0$.
+\item {\bf Regularized efficient estimator:} If our data adaptive model ${\cal M}_n$ approximates ${\cal M}_0={\cal M}$, let the estimator behave as an efficient estimator under model ${\cal M}_n$ that approximates the a-priori specified model ${\cal M}$ as sample size converges to infinity but in a way that carefully balances finite sample bias and variance.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Why does A-TMLE work: 1) standard TMLE analysis}
+\begin{itemize}
+\item From TMLE analysis we will have that $\Psi_{{\cal M}_n}(P_n^*)-\Psi_{{\cal M}_n}(P_0)$ behaves as $(P_n-P_0)D^*_{{\cal M}_n,P_0}$. Therefore, under an asymptotic stability condition on ${\cal M}_n$ so that $D^*_{{\cal M}_n,P_0}\rightarrow_p D^*_{{\cal M}_0,P_0}$ we have that it behaves as $P_n D^*_{{\cal M}_0,P_0}$ and is thus asymptotically normal with mean zero and variance $\sigma^2_{{\cal M}_0}(P_0)=P_0\{D^*_{{\cal M}_0,P_0}\}^2$.
+\item Cross-fitting weakens this need for asymptotic stability. Moreover, one might still have asymptotic normality by standardizing by a variance estimator.
+\item $D^*_{{\cal M}_0,P_0}$ equals the efficient influence curve of $\Psi:{\cal
+M}_0\rightarrow \mathbb{R}$: i.e. we achieve the efficiency we would achieve with TMLE if we would  a priori know that $P_0\in {\cal M}_0$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Why does A-TMLE work: 2) data adaptive model bias negligible}
+\begin{itemize}
+\item Let $R_{{\cal M}_0}(P,P_0)=\Psi_{{\cal M}_0}(P)-\Psi_{{\cal M}_0}(P_0)+P_0 D^*_{{\cal M}_0,P}$.
+\item We have
+\[
+\begin{array}{l}
+\Psi_{{\cal M}_n}(P_0)-\Psi(P_0)=\\
+(P_{0,n}-P_0)\{D^*_{{\cal M}_0,P_{0,n}}-\Pi_n(D^*_{{\cal M}_0,P_{0,n}}\mid T_{{\cal  M}_n}(P_{0,n}))\}\\
+\hfill +R_{{\cal M}_0}(P_{0,n},P_0),
+\end{array}
+\]
+where the projection $\Pi_n$ projects $D^*_{{\cal M}_0,P_{0,n}}$ onto tangent space of ${\cal M}_n$ at $P_{0,n}$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item This is a very nice second order remainder (i.e., $o_P(n^{-1/2})$).
+\item Therefore, our adaptive TMLE is asymptotically linear estimator of $\Psi(P_0)$ with (super-efficient) influence curve $D^*_{{\cal M}_0,P_0}$.
+\item Since it operates as an efficient estimator of $\Psi_{{\cal M}_n}(P_0)$ it will also be regular along any path through $P_0$ that stays in the limit oracle model ${\cal M}_0$.
+\end{itemize}
+\end{frame}
+
 \end{document}
