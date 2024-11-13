@@ -11,6 +11,10 @@ _Rachael Phillips_
 Based on the [`sl3` `R` package](https://github.com/tlverse/sl3) by _Jeremy
 Coyle, Nima Hejazi, Ivana Malenica, Rachael Phillips, and Oleg Sofrygin_.
 
+```{r, echo=FALSE}
+options(future.globals.maxSize = 10^24)
+```
+
 ### Learning Objectives {-}
 
 By the end of this chapter you will be able to:
@@ -589,34 +593,34 @@ from the fitted SL (which we named `sl_fit` in the previous section).
 
 ```{r cf-predictions-static}
 ### 1. Copy data
-tr_intervention_data <- data.table::copy(washb_data) 
+tr_intervention_data <- data.table::copy(washb_data)
 
 ### 2. Define intervention in copied dataset
 tr_intervention <- rep("Nutrition + WSH", nrow(washb_data))
-# NOTE: When we intervene on a categorical variable (such as "tr"), we need to 
+# NOTE: When we intervene on a categorical variable (such as "tr"), we need to
 #       define the intervention as a categorical variable (ie a factor).
-#       Also, even though not all levels of the factor will be represented in 
-#       the intervention, we still need this factor to reflect all of the 
+#       Also, even though not all levels of the factor will be represented in
+#       the intervention, we still need this factor to reflect all of the
 #       levels that are present in the observed data
 tr_levels <- levels(washb_data[["tr"]])
 tr_levels
 tr_intervention <- factor(tr_intervention, levels = tr_levels)
-tr_intervention_data[,"tr" := tr_intervention, ]
+tr_intervention_data[, "tr" := tr_intervention, ]
 
 ### 3. Create a new sl3_Task
-# note that we do not need to specify the outcome in this new task since we are 
+# note that we do not need to specify the outcome in this new task since we are
 # only using it to obtain predictions
 tr_intervention_task <- make_sl3_Task(
   data = tr_intervention_data, 
-  covariates = c("tr", "fracode", "month", "aged", "sex", "momage", "momedu", 
-                 "momheight", "hfiacat", "Nlt18", "Ncomp", "watmin", "elec", 
-                 "floor", "walls", "roof", "asset_wardrobe", "asset_table", 
-                 "asset_chair", "asset_khat", "asset_chouki", "asset_tv", 
-                 "asset_refrig", "asset_bike", "asset_moto", "asset_sewmach", 
+  covariates = c("tr", "fracode", "month", "aged", "sex", "momage", "momedu",
+                 "momheight", "hfiacat", "Nlt18", "Ncomp", "watmin", "elec",
+                 "floor", "walls", "roof", "asset_wardrobe", "asset_table",
+                 "asset_chair", "asset_khat", "asset_chouki", "asset_tv",
+                 "asset_refrig", "asset_bike", "asset_moto", "asset_sewmach",
                  "asset_mobile")
 )
 ### 4. Get predicted values under intervention of interest
-# SL predictions of what "whz" would have been had everyone received "tr" 
+# SL predictions of what "whz" would have been had everyone received "tr"
 # equal to "Nutrition + WSH"
 counterfactual_pred <- sl_fit$predict(tr_intervention_task)
 ```
@@ -629,26 +633,26 @@ we might consider an intervention that sets the treatment to the desired
 a refridgerator, and a nutrition-omitted (water, sanitation, and handwashing)
 regime otherwise.
 ```{r cf-predictions-dynamic}
-dynamic_tr_intervention_data <- data.table::copy(washb_data) 
+dynamic_tr_intervention_data <- data.table::copy(washb_data)
 
 dynamic_tr_intervention <- ifelse(
   washb_data[["asset_refrig"]] == 1, "Nutrition + WSH", "WSH"
 )
 dynamic_tr_intervention <- factor(dynamic_tr_intervention, levels = tr_levels)
-dynamic_tr_intervention_data[,"tr" := dynamic_tr_intervention, ]
+dynamic_tr_intervention_data[, "tr" := dynamic_tr_intervention, ]
 
 dynamic_tr_intervention_task <- make_sl3_Task(
-  data = dynamic_tr_intervention_data, 
-  covariates = c("tr", "fracode", "month", "aged", "sex", "momage", "momedu", 
-                 "momheight", "hfiacat", "Nlt18", "Ncomp", "watmin", "elec", 
-                 "floor", "walls", "roof", "asset_wardrobe", "asset_table", 
-                 "asset_chair", "asset_khat", "asset_chouki", "asset_tv", 
-                 "asset_refrig", "asset_bike", "asset_moto", "asset_sewmach", 
+  data = dynamic_tr_intervention_data,
+  covariates = c("tr", "fracode", "month", "aged", "sex", "momage", "momedu",
+                 "momheight", "hfiacat", "Nlt18", "Ncomp", "watmin", "elec",
+                 "floor", "walls", "roof", "asset_wardrobe", "asset_table",
+                 "asset_chair", "asset_khat", "asset_chouki", "asset_tv",
+                 "asset_refrig", "asset_bike", "asset_moto", "asset_sewmach",
                  "asset_mobile")
 )
 ### 4. Get predicted values under intervention of interest
-# SL predictions of what "whz" would have been had every subject received "tr" 
-# equal to "Nutrition + WSH" if they had a fridge and "WSH" if they didn't have 
+# SL predictions of what "whz" would have been had every subject received "tr"
+# equal to "Nutrition + WSH" if they had a fridge and "WSH" if they didn't have
 # a fridge
 counterfactual_pred <- sl_fit$predict(dynamic_tr_intervention_task)
 ```
@@ -692,15 +696,17 @@ performance metric, see @rvp2022super.
 ```{r sl-summary}
 cv_risk_table <- sl_fit$cv_risk(eval_fun = loss_squared_error)
 ```
+
 ```{r cv-risk-summary, eval = FALSE}
-cv_risk_table[,c(1:3)]
+cv_risk_table[, c(1:3)]
 ```
+
 ```{r cv-risk-summary-handbook, echo = FALSE}
 if (knitr::is_latex_output()) {
-  cv_risk_table[,c(1:3)] %>%
+  cv_risk_table[, c(1:3)] %>%
     kable(format = "latex")
 } else if (knitr::is_html_output()) {
-  cv_risk_table[,c(1:3)] %>%
+  cv_risk_table[, c(1:3)] %>%
     kable() %>%
     kableExtra:::kable_styling(fixed_thead = TRUE) %>%
     scroll_box(width = "100%", height = "300px")
@@ -708,6 +714,7 @@ if (knitr::is_latex_output()) {
 ```
 
 ##### Cross-validated predictive performance by hand {-} 
+
 Similar to how we got the CV predictions "by hand", we can also calculate the CV 
 performance/risk in a way that exposes the procedure. Specifically, this is done 
 by tapping into each of the folds, and then using the fitted candidate learners 
@@ -721,26 +728,25 @@ helpful for understanding the CV risk and how it is calculated.
 ```{r cv-risk-byhand}
 ##### CV risk "by hand" #####
 # for each fold, i, we obtain predictive performance/risk for each candidate:
-cv_risks_list <- lapply(seq_along(task$folds), function(i){
-  
+cv_risks_list <- lapply(seq_along(task$folds), function(i) {
   # get validation dataset for fold i:
   v_data <- task$data[task$folds[[i]]$validation_set, ]
-  
+
   # get observed outcomes in fold i's validation dataset:
   v_outcomes <- v_data[["whz"]]
 
-  # make task (for prediction) using fold i's validation dataset as data, 
+  # make task (for prediction) using fold i's validation dataset as data,
   # and keeping all else the same:
   v_task <- make_sl3_Task(covariates = task$nodes$covariates, data = v_data)
   
-  # get predicted outcomes for fold i's validation dataset, using candidates 
+  # get predicted outcomes for fold i's validation dataset, using candidates
   # trained to fold i's training dataset
   v_preds <- sl_fit$fit_object$cv_fit$fit_object$fold_fits[[i]]$predict(v_task)
-  # note: v_preds is a matrix of candidate learner predictions, where the 
-  # number of rows is the number of observations in fold i's validation dataset 
-  # and the number of columns is the number of candidate learners (excluding 
+  # note: v_preds is a matrix of candidate learner predictions, where the
+  # number of rows is the number of observations in fold i's validation dataset
+  # and the number of columns is the number of candidate learners (excluding
   # any that might have failed)
-  
+
   # calculate predictive performance for fold i for each candidate
   eval_function <- loss_squared_error # valid for estimation of conditional mean
   v_losses <- apply(v_preds, 2, eval_function, v_outcomes)
@@ -755,7 +761,7 @@ cv_risk_table_byhand <- data.table(
 # check that the CV risks are identical when calculated by hand and function
 # (ignoring small differences by rounding to the fourth decimal place)
 identical(
-  round(cv_risk_table_byhand$MSE,4), round(as.numeric(cv_risk_table$MSE),4)
+  round(cv_risk_table_byhand$MSE, 4), round(as.numeric(cv_risk_table$MSE), 4)
 )
 ```
 <!--
