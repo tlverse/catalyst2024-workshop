@@ -274,21 +274,43 @@ Truth: No effect of exposure on outcome.
 \end{frame}
 
 \begin{frame}
-  \frametitle{Estimating impacts on COVID-19 infection rates by longitudinal
-  policy shift interventions}
+  \frametitle{Evaluating (in)direct effects of adaptive dosing strategies for OUD}
   \vspace{-2em}
   \begin{center}
-  \includegraphics[width=0.8\textwidth] {figures/BalzerShift2023.png}\hspace*{4cm}
+  \includegraphics[width=0.96\textwidth] {figures/hejazi_xbot.png}\hspace*{4cm}
   \end{center}
   \scriptsize{
-  Nugent and Balzer, ``A demonstration of modified treatment policies to
-  evaluate shifts in mobility and COVID-19 case rates in US counties.''
-  \textit{AJE} (2023).}
+  Hejazi et al., ``Nonparametric causal mediation analysis for stochastic
+  interventional (in)direct effects.'' \textit{Biostatistics} (2023).}
 \end{frame}
 
 \begin{frame}
+  \frametitle{Estimating impacts on AKI of delay-in-intubation policies}
+  \vspace{-2em}
+  \begin{center}
+  \includegraphics[width=1.03\textwidth] {figures/hejazi_surv_lmtp.png}\hspace*{4cm}
+  \end{center}
+  \scriptsize{
+  Diaz, Hoffman, and Hejazi, ``Causal survival analysis with longitudinal
+  modified treatment policies.'' \textit{LiDA} (2024).}
+\end{frame}
+
+% \begin{frame}
+%   \frametitle{Estimating impacts on COVID-19 infection rates by longitudinal
+%   policy shift interventions}
+%   \vspace{-2em}
+%   \begin{center}
+%   \includegraphics[width=0.8\textwidth] {figures/BalzerShift2023.png}\hspace*{4cm}
+%   \end{center}
+%   \scriptsize{
+%   Nugent and Balzer, ``A demonstration of modified treatment policies to
+%   evaluate shifts in mobility and COVID-19 case rates in US counties.''
+%   \textit{AJE} (2023).}
+% \end{frame}
+
+\begin{frame}
   \frametitle{Introduction to the \texttt{tlverse}}
-  \url{https://tlverse.org/tlverse-handbook/}
+  \url{https://tlverse.org/catalyst2024-workshop/}
 \end{frame}
 
 \section{TL Roadmap}
@@ -495,7 +517,7 @@ Truth: No effect of exposure on outcome.
 
 \begin{frame}
   \frametitle{Coding exercise: Super learning with \texttt{sl3}}
-  \url{https://tlverse.org/tlverse-handbook/sl3.html}
+  \url{https://tlverse.org/catalyst2024-workshop/sl3.html}
 \end{frame}
 
 % \begin{frame}
@@ -637,6 +659,26 @@ Truth: No effect of exposure on outcome.
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Analysis of TMLE (vdL, Rubin, 2006)}
+\begin{itemize}
+\item Construct initial estimator ${\bf P}_n$; determine a least favorable path
+  $\{{\bf P}_{n,\epsilon}:\epsilon\in (-\delta,\delta)\}\subset {\cal M}$
+  through ${\bf P}_n$ with score $D^*_{{\bf P}_n}$ at $\epsilon = 0$.
+\item Compute MLE $\epsilon_n =\arg\max_{\epsilon}P_n L({\bf P}_{n,\epsilon})$,
+  where $L(P)$ is a valid loss function so that $\Psi(\arg\min_P
+  P_0L(P))=\Psi(P_0)$.
+\item Let ${\bf P}_n^*={\bf P}_{n,\epsilon_n}$. The TMLE is given by $\Psi({\bf
+  P}_n^*)$.
+\item If the mapping $\Psi(\cdot)$ is pathwise differentiable,
+  $\Psi({\bf P}_n^*)-\Psi(P_0)=(P_n-P_0)D^*_{{\bf P}_n^*}+R({\bf P}_n^*,P_0)$,
+  with $R(P,P_0)\equiv \Psi(P)-\Psi(P_0)-(P-P_0)D^*_P$ an exact second-order
+  remainder; assume $R(P_n^*,P_0) = o_P(n^{-1/2})$.
+\item Use super learner to obtain initial estimator ${\bf P}_n$, then the TMLE
+  $\Psi({\bf P}_n^*)$ will be an asymptotically efficient estimator of
+  $\Psi(P_0)$ under regularity conditions.
+\end{itemize}
+\end{frame}
+
 \begin{frame}
   \frametitle{Asymptotic Linearity of the TMLE}
   \begin{itemize}
@@ -685,7 +727,7 @@ Truth: No effect of exposure on outcome.
 
 \begin{frame}
   \frametitle{Coding exercise: TMLE with \texttt{tmle3}}
-  \url{https://tlverse.org/tlverse-handbook/tmle3.html}
+  \url{https://tlverse.org/catalyst2024-workshop/tmle3.html}
 \end{frame}
 
 \subsection{Place conclusions in substantive context}
@@ -705,7 +747,7 @@ Truth: No effect of exposure on outcome.
   \includegraphics[width = 1.05\textwidth]{figures/gruber_sensitivity.png}
   \end{center}
   \vspace{35pt}
-\tiny{Courtesy of "Targeted-Learning Based Statistical Analysis Plan" Webinar by Susan Gruber on 28 April 2021}
+\tiny{Courtesy of ``Targeted-Learning Based Statistical Analysis Plan'' Webinar by Susan Gruber on 28 April 2021}
 \end{frame}
 
 \begin{frame}
@@ -727,7 +769,7 @@ Truth: No effect of exposure on outcome.
 
 \section{Advanced TL}
 
-\subsection{Regularizing TMLE}
+\subsection{Collaborative TMLE}
 
 \begin{frame}
 \frametitle{Outcome blind simulations to a priori define TMLE: Wyss et al., 2023}
@@ -753,11 +795,41 @@ Studies}
 %\vspace{35pt}
 \end{frame}
 
-\begin{frame}
-\frametitle{Background on OAL and C-TMLE}
+\begin{frame}{Outcome-regression weighted LASSO (OAL)}
+Shortreed \& Ertefaie (2017) proposed outcome-regression weighted Lasso (OAL) for propensity score (PS) estimation:
 \begin{itemize}
-  \item add background slides on OAL 
-  \item add overview slide for C-TMLE
+  \item  Fit unpenalized linear model for $\mathbb{E}(Y \mid A,W)$:
+  $$(\hat{\alpha}, \hat{\eta}) = \arg\min_{\alpha,\eta} l_n(\alpha;Y,A,W).$$
+where $\eta$ is the coefficient for $A$, and $\alpha$ is the coefficient for $W$.
+\item Denote the coefficient for variable $W_j$ in the outcome regression with $\hat{\alpha}_j$.
+\item Fit PS with Lasso using regularization term
+\[
+  \lambda \sum_j ||\alpha_j||^{-\gamma} ||\beta_j || \mbox{ instead of usual $\lambda \sum_j \mid \beta_j\mid$ \ . }
+\]
+%\item  They suggest $\gamma= 2 \cdot (3 - \lambda)$ to ensure the necessary conditions for the convergence properties.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{HAL-based OAL for PS Estimation}
+The theoretical property of OAL relies on the \textbf{\textit{correct parametric formula}}, which is often unknown in practice.
+We extend OAL to outcome-regression weighted HAL (OHAL):
+\begin{enumerate}
+\item Compute the outcome regression using Lasso of form $\sum_j \alpha_n(j)\phi_j(W,A)$.
+%with dependent variable the outcome $Y$ and features the basis functions $\phi_j(A,W)$ and the treatment indicator $A$.
+\item Use as basis functions for the PS $\{\phi_j(1,W),\phi_j(0,W): j\}$.
+\item Both of these two basis functions will be associated with same weight $\alpha_n(j)$.
+%The $L_1$ constraint parameter $M^{(1)}$ can be selected by CV.
+\item Compute the propensity score using a Lasso logistic regression using the above basis functions.  The $L_1$-constraint for $\beta_{j}$'s, the coefficient for $\phi_j$, is defined as the weighted $L_1$-norm above.
+\item Or simply define $\lVert \beta \rVert_1=\sum_{j, \alpha_n(j)\not =0}\mid \beta(j)\mid$.
+%  $$\sum_{s \subset \{1, %\cdots,n\}}\sum_{i=1}^{n}|\alpha_{s,i}|^{-\gamma} |\beta_{s,i}| < %M^{(2)}$$
+\end{enumerate}
+\end{frame}
+\begin{frame}{C-TMLE to select $L_1$-norm}
+\begin{itemize}
+  \item Tune the $L_1$-norm with C-TMLE: i.e. optimize in $\lambda$ increase in likelihood of TMLE-step using $g_{n,\lambda}$.
+  \item Can be combined with standard lasso to yield a collaborative-controlled (CC) regularization for TMLE.
+  \item Similarly can be used in a collaborative-controlled outcome-adaptive lasso (CC-OAL) for TMLE.
 \end{itemize}
 \end{frame}
 
@@ -791,7 +863,7 @@ Studies}
 %\vspace{35pt}
 \end{frame}
 
-\subsection{HAL and HAL-TMLE}
+\subsection{HAL and A-TMLE}
 
 \begin{frame}
 \frametitle{Zero-order Highly Adaptive Lasso (HAL): A nonparametric MLE}
@@ -811,7 +883,7 @@ can be represented as an infinite linear combination of spline basis functions.
 \end{center}
 \end{frame}
 
-\begin{frame}{Formal representation of cadlag function as linear combination of zero order splines}
+\begin{frame}{Formal representation of cadlag function as linear combination of zero-order splines}
 \begin{itemize}
 \item A cadlag function $f\in D^{(0)}([0,1]^d)$ can be represented as
 \[
@@ -915,7 +987,75 @@ This $\delta^{\star}$ equals the rate of convergence for $d_0^{1/2}(Q_n,Q_0)$.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Derivation of first order spline representation of cadlag function}
+\begin{frame}
+\frametitle{Basic \texttt{R} \texttt{hal9001} Functionality}
+\begin{enumerate}
+    \item Load package and data: \newline \texttt{library(hal9001)} \newline
+    \texttt{data(mtcars)}
+    \item Create numeric vector for dependent variable: \newline \texttt{Y <-  mtcars[,"mpg"]}
+    \item Create dataframe or matrix of predictors: \newline
+    \texttt{X <- mtcars[,c("cyl", "disp", "hp", "wt")]}
+    \item Fit HAL: \newline
+   \texttt{ hal\_fit <- fit\_hal(X=X, Y=Y)}\newline
+   \newline
+   \small{\textit{Note}: default \texttt{max\_degree=3} considers no more than 3-way interactions, and default \texttt{reduce\_basis=0} places no restrictions on the minimum proportion of 1's in basis functions.}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Summary table of \texttt{hal9001}  HAL fit}
+\vspace{-2pt}
+\texttt{summary(hal\_fit)\$table}
+\begin{center}
+\vspace{-2pt}
+\includegraphics[width = 0.38\textwidth]{figures/HAL-summary-mtcars.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Specifying \texttt{hal9001} model formulas}
+\textit{Example}: Observe $O=(W_1, W_2, A, Y) \sim P_0$ \newline
+$$\text{\texttt{R} code: \texttt{fit\_hal(Y, X, formula, data, ...)}} $$
+\textbf{Additive model \texttt{formula}}: \newline
+$\text{\texttt{Y}} \sim . $ or $\text{\texttt{Y}} \sim \text{\texttt{h(W1) + h(W2) + h(A)}} $
+\vspace{0.05in}
+\textbf{Bi-additive model \texttt{formula}}: \newline
+$\text{\texttt{Y}} \sim . $\^{}$\text{\texttt{2}}$ or $\text{\texttt{Y}} \sim \text{\texttt{h(W1)+h(W2)+h(A)+h(W1,W2)+h(W1,A)+h(W2,A)}}$
+\vspace{0.05in}
+\textbf{Only interactions with A \texttt{formula}:} \newline
+$\text{\texttt{Y}} \sim \text{\texttt{h}}(.) + \text{\texttt{h}}(.\text{\texttt{,A}})$ or $\text{\texttt{Y}} \sim \text{\texttt{h(W1)+h(W2)+h(A)+h(W1,A)+h(W2,A)}}$
+\vspace{0.05in}
+\textbf{Monotone $\uparrow$ (i) $\downarrow$ (d) \texttt{formula} examples}:
+$\text{\texttt{Y}} \sim \text{\texttt{i}}(.) $ or $\text{\texttt{Y}} \sim \text{\texttt{i}}(.) + \text{\texttt{i}}(.,.) $ or
+$\text{\texttt{Y}} \sim \text{\texttt{i(W1)+d(W2)+i(A)}}$
+%\newline
+%\newline
+\end{frame}
+
+\begin{frame}
+\frametitle{Possible HAL fits under various smoothness orders}
+\textit{Example}: Observe $(W, A, Y) \sim P_0$
+$$\text{\texttt{R} code: \texttt{fit\_hal(Y, X, data, formula, k, ...)}} $$
+\textbf{Example fits for 0-order smoothness, \texttt{k=0}}: \newline
+    Additive model:
+
+    $Y = \mathbb{I}(W>0.5) + \mathbb{I}(W > 0.3) + \mathbb{I}(A>0)$ \newline
+    Bi-additive model:
+
+    $Y = \mathbb{I}(W>0.5) + \mathbb{I}(A>0)  + \mathbb{I}(W>0.5, A>0)$
+    \newline
+    \newline
+\textbf{Example fits for 1st-order smoothness, \texttt{k=1}}: \newline
+Additive model:
+
+$Y = \mathbb{I}(W>0.5)[W - 0.5] + \mathbb{I}(W>0.3)[W - 0.3] + \mathbb{I}(A>0)[A-0]$
+  \newline
+ Bi-additive model:
+
+ $Y = \mathbb{I}(W>0.5)[W - 0.5] + \mathbb{I}(A>0)[A-0]  + \mathbb{I}(W>0.5, A>0)[W - 0.5][A - 0]$ \newline
+\end{frame}
+
+\begin{frame}{Derivation of first-order spline representation of cadlag function}
 \begin{itemize}
 \item In the presentation of $f\in D^{(0)}_M([0,1]^d)$ there appear integrals
 $\int_{(0(s),x(s)]} df_s(u)$.
@@ -991,7 +1131,7 @@ D^{(1)}({\cal R}^1_N)=\left\{\sum_{j\in {\cal R}^1_N}\beta(j)\phi_j: \beta\right
 \end{itemize}
 \end{frame}
 
-\begin{frame}{First order spline HAL}
+\begin{frame}{First-order spline HAL}
 \begin{itemize}
 \item We then define
 \[
@@ -1114,14 +1254,107 @@ based on $D_{\mathcal{M}_n,P_0}$.
 \end{itemize}
 \end{frame}
 
-
-\begin{frame}
-\frametitle{Adaptive TMLE}
+\begin{frame}{Adaptive TMLE of ATE}
 \begin{itemize}
-  \item add slides on application of A-TMLE from Duke talk
+\item Let $O=(W,A,Y)$; ${\cal M}$ nonparametric; $\Psi(P)=E_P\tau_P(W)$; $\tau_P=E_P(Y\mid A=1,W)-E_P(Y\mid A=0,W)$.
+\item Consider loss function $L_{m_0,g_0}(\tau)$ indexed by nuisance parameters $m_0=E_0(Y\mid W)$ and $\bar{g}_0=P_0(A=1\mid W)$:
+\[
+  L_{m,g}(\tau)=\left(Y - m(W) - (A - g(1\mid W))\tau\right)^2 \ .
+\]
+\item {\bf Double robust loss for CATE:} We have $\tau_0=\arg\min_{\tau}P_0 L_{m,g}(\tau)$ if $m=m_0$ or $g=g_0$. 
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Adaptive TMLE of ATE}
+\begin{itemize}
+\item Let $\sum_j\beta(j)\phi_j$ be a high dimensional linear combination of splines $\phi_j$ as in HAL. Define
+\[
+\beta_n=\arg\min_{\beta, \lVert \beta \rVert_{1} < C_n} P_n L_{m_n,g_n}\left(\sum_j \beta_j\phi_j\right) \ .
+\]
+Then, refit $\sum_{j,\beta_n(j)\not =0}\beta_j\phi_j$ unpenalized (relax-HAL). 
+\item Let $\tau_n=\sum_j\beta_n(j)\phi_j$. $\psi_n=P_n \tau_n$ is an adaptive TMLE  where the learned working model ${\cal M}_n$ for $P_0$ is the semiparametric regression model selected by HAL.
+\item It is super-efficient corresponding with oracle model ${\cal M}_0$ the limit of HAL-working model ${\cal M}_n$ ({\bf or just efficient if ${\cal M}_0={\cal M}$}).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Causal and statistical estimand}
+\begin{itemize}
+\item RCT-ATE $\Psi^F_0 = E_PE_P(Y_1-Y_0\mid S=1,W)$.
+\item Due to $S=1$ being an RCT, we have $\Psi^F_0$ equals {\small
+\[ \psi_0=E_0\left( E_0(Y\mid S=1,W,A=1)-E_0(Y\mid S=1,W,A=0)\right).\]}
+\item Note in  outer expectation, we take the average over the \textcolor{red}{pooled covariate distribution}. 
+\item \textit{Oral semaglutide case study}: What would the risk difference be \textbf{if all patients in the target population were enrolled} in the trial? The target population should \textbf{not} contain individuals with 0 probability of being enrolled in the trial. Factors to consider: inclusion/exclusion criteria of PIONEER 6, time-frame, patient characteristics, healthcare engagement, etc. (Dang et al. 2023)
+\end{itemize}
+%\small
+%\begin{table}
+%\centering
+%\begin{tabular}{m{11cm}}
+%\tableheadrow
+%\tableheadcol{\textit{Context: oral semaglutide case study}}\\
+%\textit{What would the risk difference be \textbf{if all patients in the target population were enrolled} in the trial? The target population should \textbf{not} contain individuals with 0 probability of being enrolled in the trial. Factors to consider: inclusion/exclusion criteria of PIONEER 6, time-frame, patient characteristics, healthcare engagement, etc. (Dang et al. 2023)}
+%\end{tabular}
+%\end{table}
+\end{frame}
+
+\begin{frame}{Decomposition of the target estimand as difference  pooled-ATE and bias term (Dang et al. 2023)}
+\begin{itemize}
+\item 1st component, \textbf{pooled-ATE} estimand: $\tilde{\Psi}(P)=E_P\tau_P(W)$.
+\item 2nd component, \textbf{bias} estimand: $\Psi^\#(P)=\tilde{\Psi}(P)-\Psi(P)$:
+$$\Psi^\#(P)=E_P[\Pi(0\mid W,0)\tau^S_P(W,0)-\Pi(0\mid W,1)\tau^S_P(W,1)],$$
+ where $$\Pi(s\mid W,A)=P(S=s\mid W,A),$$ and \[\tau_P^S(W,A)=E_P(Y\mid S=1,W,A)-E_P(Y\mid S=0,W,A).\]
+\item Thus
+\[ \Psi(P_0)=\tilde{\Psi}(P_0)-\textcolor{red}{\Psi^\#(P_0)} \ \text{\textcolor{red}{bias correction}}.\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Adaptive-TMLE for bias estimand $\Psi^{\#}$}
+\begin{itemize}
+\item For pooled ATE $\tilde{\Psi}(P_0)$, we  could either use a regular TMLE of pooled ATE or the above A-TMLE.
+%\item A nonparametric framework that combines \textbf{data-driven model selection} and debiased \textbf{machine learning} techniques to construct \textbf{asymptotically linear}, \textbf{adaptive}, and \textbf{super-efficient} estimators for pathwise differentiable functionals (van der Laan et al. 2023).
+%\item We will apply it here to estimate the \textbf{pooled-ATE} and the \textbf{bias} estimands.
+\item For the bias estimand $\Psi^{\#}(P_0)$, analogue to A-TMLE for ATE,  we will use relax-HAL to learn a \textbf{working submodel for the conditional effect $\tau^S_0$ of the study indicator} $S$ on the outcome $Y$ (implying a submodel ${\cal M}_n$). 
+\item The corresponding A-TMLE of bias estimand also includes targeting an initial estimator $\Pi_n$ of $\Pi_0=P_0(S\mid W,A)$, and one estimates the expectation over $W$ with the empirical mean. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Benefits of using A-TMLE include}
+\begin{itemize}
+\item Nominal \textbf{type I error control} without extra assumptions.
+\item Not only estimates the magnitude of the bias, also takes advantage of the \textbf{learn-able structure of the bias}. Allows \textbf{full utilization} of both RCT and RWD data, more gain in efficiency.
+\item The bias working model \textbf{mitigates large variances} due to inverse-weighting, finite sample robust.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Integrating RCT with Observational Data}
+\begin{itemize}
+\item Suppose we observe data on two studies indicated by $S\in \{0,1\}$: $(S_i,W_i,A_i,Y_i)$, $i=1,\ldots,n$. 
+\item In study $S=1$, treatment is randomized (RCT), so that the ATE can be robustly estimated.
+\item Study $S=0$ is an external RWD study. 
+\item We make no other assumptions on likelihood beyond possible knowledge of $g(A\mid S,W)$.
+\item However, the RCT is underpowered due to small control arm or small overall sample size.\item Therefore, a TMLE of the ATE based on $S=1$ only would have large confidence intervals lacking power at reasonable alternatives. \item Can we utilize the external study $S=0$ from the real world to obtain a more efficient estimator of the ATE?  Without adding assumptions!
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Dang et al (2023) developed an ES-CV-TMLE. Rejects RWD if biased relative to RCT.
+\item Here, we develop an Adaptive TMLE that learns bias in RWD and corrects pooled estimator.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Motivating example: oral semaglutide on cardiovascular outcomes (Dang et al. 2023)}
+\small
+\begin{itemize}
+\item \textit{Causal question:} \textbf{risk of MACE within one year} if all patients in the target population were prescribed \textbf{oral semaglutide} plus standard-of-care compared to if all patients were prescribed \textbf{standard-of-care} alone?
+\item \textit{Set up:} a single \textbf{RCT} (PIONEER 6) vs. a \textbf{hybrid} randomized-external data study.
+\item \textit{Results:} 
+  \begin{itemize}
+  \item Under the single RCT: \\ \textbf{-1.30\% (95\% CI -2.60\%, 0.00\%)}. 
+  \item Under the hybrid design using ES-CVTMLE: \\ \textbf{-1.53\% (95\% CI -2.75\%, -0.30\%)}.
+  \end{itemize}
+\item \textit{Conclusion}: importance of the \textbf{\textit{Causal Roadmap}}, using \textbf{RWD} to inform regulatory approval process, \textbf{power gain} of test for superiority, \textbf{reduced participation-time} without initiation of a GLP1-RA.
+\end{itemize}
+\end{frame}
 
 \subsection{Longitudinal TMLE}
 
@@ -1201,8 +1434,8 @@ We make no assumptions on $q_0$, but could make assumptions on $g_0$.
 \begin{itemize}
 \item $p^{g^*}_0=q_0(o)g^*(o)$ is the {\bf $G$-computation formula for the post-intervention distribution} of $O$ under the stochastic intervention $g^*=\prod_{t=0}^K g^*_{A(t)}(O)$.
 \item Under {\bf sequential randomization assumption} (SRA) and a positivity assumption, the post-intevention distribution $p_{g^*}$ of $O$ equals $p_{g^*}$, where post-intervention distribution is defined by the structural equation model in which the equations for the intervention nodes $A(t)$ are replaced by drawing from $g^*_{A(t)}$.
-\item {\bf Causal estimand}: $E_{P_{g^*}}Y$, mean outcome of $Y$ under post-intervention distribution, or survival rate if $Y$ is indicator of survival, under  post-intervention $P_{g^*}$.
-\item {\bf Target estimand}: $E_{P^{g^*}}Y$, mean outcome of $Y$ under $G$-computation density.
+\item {\bf Causal estimand}: $\mathbb{E}_{\textcolor{red}{P_{g^{\star}}}}Y$, mean outcome of $Y$ under post-intervention distribution, or survival rate if $Y$ is indicator of survival, under  post-intervention $P_{g^*}$.
+\item {\bf Target estimand}: $\mathbb{E}_{\textcolor{blue}{P^{g^{\star}}}}Y$, mean outcome of $Y$ under $G$-computation density.
 %\itemIn particular, for a dynamic intervention $d=(d_t: t=0,\ldots,K)$ with $d_t(\bar{L}(t),\bar{A}(t-1))$ being the treatment at time $t$, the $G$-computation formula is given by \begin{align*}\label{eqn:Gcomp}p^d_0(l)=\prod_{t=0}^{K+1}q_{0,L(t)}^d(\bar{l}(t)),\end{align*}
 %Susan: replace 1 by bar{a}(k-1)where $q_{L(t)}^d(\bar{l}(t))=q_{L(t)}(l(t)\mid \bar{l}(t-1),\bar{A}(t-1)=\bar{d}_{t-1}(\bar{l}(t-1)) )$. \itemLet $L^d=(L(0),L^d(1),\ldots,Y^d=L^d(K+1))$ denote the random variable with probability distribution $P^d$.
 %\item This is the so called $G$-computation formulafor the post-intervention distribution corresponding with the dynamic intervention $d$.
@@ -1218,9 +1451,17 @@ We make no assumptions on $q_0$, but could make assumptions on $g_0$.
   \end{center}
 \end{frame}
 
-%\begin{frame}{Using longitudinal TMLE to estimate treatment-rule-specific survival curves}
-%  \frametitle{Super learning: data demonstration}\vspace{-.1in} \begin{figure}  \includegraphics[width=1.0\textwidth]{mayaslides/Presentation1.pdf}
-%  \includegraphics[width=1.0\textwidth]{mayaslides/slide09.jpg}  \end{figure} \end{frame}
+\begin{frame}\frametitle{Deep LTMLE: Toru Shirakawa, Yi Li, Sky Qiu, vdL}
+\begin{itemize}
+\item LTMLE (Bang, Robins, 2005, Petersen et al., Gruber, vdL, etc, relies on {\bf sequential regression}.
+%hardest regression dominates; have to discretize time, breaks down for too many time points. 
+\item Targeted {\bf maximum likelihood} requires estimation of all conditional densities (vdL 2010a,b; Stitelman etal (2011)).
+\item Rytgaard, Gerds, vdL (2023) {\bf combines}  TM-likelihood based estimation of {\bf intensities}  with estimation of a {\bf conditional mean function integrating over time dependent covariates}.
+\item Toru et al. Deep LTMLE utilize {\bf transformer architecture for temporal difference learning}, simultaneously modeling and estimating the sequential regressions: \newline
+1)  {\em Computationally superior}; 2) continuous time monitoring; 3)  large histories; 4)  TMLE update step uses transformer gradient descent algorithm. 
+% again utilizing same gradient descent algorithm to do the updating simultaneously while solving the EIC score equation.
+\end{itemize}
+\end{frame} 
 
 \subsection{Variable Importance}
 
@@ -1244,7 +1485,7 @@ We make no assumptions on $q_0$, but could make assumptions on $g_0$.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Super-learner to Predict COVID-19 Risk from baseline information}
+\begin{frame}{Super learner to predict COVID-19 risk from baseline information}
 \begin{itemize}
 \item One can set up a collection of logistic regression machine learning algorithms, including a variety of HAL-model fits.
 \item One has to select a {\bf measure of performance}, such as AUC, log-likelihood, or MSE.
@@ -1264,7 +1505,6 @@ We make no assumptions on $q_0$, but could make assumptions on $g_0$.
 \item One can use {\bf multiple testing adjustments} to control family wise error or false discovery rate.
 \end{itemize}
 \end{frame}
-
 
 \section{Conclusion}
 
@@ -1303,6 +1543,91 @@ We make no assumptions on $q_0$, but could make assumptions on $g_0$.
 % \end{itemize}
 % \end{frame}
 
+\begin{frame}
+\frametitle{}
+\vspace{20pt}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/1-FDA-RWE-Subcommittee.pdf}
+\end{center}
+\vspace{35pt}
+%\tiny{Courtesy of "FDA Real-World Evidence Program" Webinar by John Concato on 4 August 2021}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\vspace{20pt}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/2-FDA-RWE-Subcommittee.pdf}
+\end{center}
+\vspace{35pt}
+%\tiny{Courtesy of "FDA Real-World Evidence Program" Webinar by John Concato on 4 August 2021}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\vspace{20pt}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/3-FDA-RWE-Subcommittee.pdf}
+\end{center}
+\vspace{35pt}
+%\tiny{Courtesy of "FDA Real-World Evidence Program" Webinar by John Concato on 4 August 2021}
+\end{frame}
+\begin{frame}
+\frametitle{}
+\vspace{20pt}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/4-FDA-RWE-Subcommittee.pdf}
+\end{center}
+\vspace{35pt}
+%\tiny{Courtesy of "FDA Real-World Evidence Program" Webinar by John Concato on 4 August 2021}
+\end{frame}
+\begin{frame}
+\frametitle{}
+\vspace{20pt}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/5-FDA-RWE-Subcommittee.pdf}
+\end{center}
+\vspace{35pt}
+%\tiny{Courtesy of "FDA Real-World Evidence Program" Webinar by John Concato on 4 August 2021}
+\end{frame}
+\begin{frame}
+\frametitle{}
+\vspace{20pt}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/6-FDA-RWE-Subcommittee.pdf}
+\end{center}
+\vspace{35pt}
+%\tiny{Courtesy of "FDA Real-World Evidence Program" Webinar by John Concato on 4 August 2021}
+\end{frame}
+\begin{frame}
+\frametitle{}
+\vspace{20pt}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/7-FDA-RWE-Subcommittee.pdf}
+\end{center}
+\vspace{35pt}
+%\tiny{Courtesy of "FDA Real-World Evidence Program" Webinar by John Concato on 4 August 2021}
+\end{frame}
+\begin{frame}
+\frametitle{}
+\vspace{20pt}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/8-FDA-RWE-Subcommittee.pdf}
+\end{center}
+\vspace{35pt}
+%\tiny{Courtesy of "FDA Real-World Evidence Program" Webinar by John Concato on 4 August 2021}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\vspace{20pt}
+\begin{center}
+\includegraphics[width=\textwidth]{figures/9-FDA-RWE-Subcommittee.pdf}
+\end{center}
+\vspace{35pt}
+%\tiny{Courtesy of "FDA Real-World Evidence Program" Webinar by John Concato on 4 August 2021}
+\end{frame}
+
 \begin{frame}\frametitle{Concluding Remarks}
 \begin{itemize}
 \item Roadmap for causal inference and Targeted Learning provides systematic principled approach for generating RWE.
@@ -1322,8 +1647,8 @@ We make no assumptions on $q_0$, but could make assumptions on $g_0$.
 %\item Nonprofit: Patient-Centered Outcomes Research Institute (pcori), Bill and Melinda Gates Foundation
 \item Software:
     \begin{itemize}
-        \item The \texttt{tlverse} software ecosystem: \url{https://tlverse.org}
-        \item Additional software: \texttt{tmle}, \texttt{ltmle}, \texttt{SuperLearner}
+        \item The \texttt{tlverse} ecosystem: \url{https://github.com/tlverse}
+        \item Additional packages: \texttt{tmle}, \texttt{ltmle}, \texttt{lmtp}, \texttt{SuperLearner}
     \end{itemize}
     \end{itemize}
 \end{frame}
