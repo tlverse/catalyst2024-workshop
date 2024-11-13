@@ -1030,6 +1030,7 @@ dSL_pred <- dSL_fit$predict(task)
 earth_pred <- dSL_fit$learner_fits$Lrnr_earth_2_3_backward_0_1_0_0$predict(task)
 identical(dSL_pred, earth_pred)
 ```
+
 ### Including ensemble Super Learner(s) as candidate(s) in discrete Super Learner
 
 We recommend using CV to evaluate the predictive performance of the SL. We 
@@ -1054,7 +1055,8 @@ Recall the SL object, `sl`, defined in section 2:
 ```{r recall-eSL}
 # in the section 2 we defined Lrnr_sl as
 # sl <- Lrnr_sl$new(learners = stack, metalearner = Lrnr_nnls$new())
-````
+```
+
 `sl` is an eSL since it used NNLS as the meta-learner. We rename `sl` to 
 `eSL_metaNNLS` below to clarify that this is an eSL that uses NNLS as its 
 meta-learner. Note that the candidate learners in this eSL are those passed 
