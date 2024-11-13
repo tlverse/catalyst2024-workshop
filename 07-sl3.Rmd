@@ -11,10 +11,6 @@ _Rachael Phillips_
 Based on the [`sl3` `R` package](https://github.com/tlverse/sl3) by _Jeremy
 Coyle, Nima Hejazi, Ivana Malenica, Rachael Phillips, and Oleg Sofrygin_.
 
-```{r, echo=FALSE}
-options(future.globals.maxSize = 10^24)
-```
-
 ### Learning Objectives {-}
 
 By the end of this chapter you will be able to:

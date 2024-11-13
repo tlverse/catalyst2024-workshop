@@ -24,6 +24,6 @@ rmd_files: [
   "08-tmle3.Rmd",
   "09-tmle3mopttx.Rmd",
   "10-tmle3shift.Rmd",
-  "11-tmle3mediate.Rmd",
+  # "11-tmle3mediate.Rmd",
   "references.Rmd"
 ]

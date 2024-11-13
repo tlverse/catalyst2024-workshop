@@ -1,6 +1,6 @@
 # same seed across chapters
 library(methods)
-set.seed(34729)
+set.seed(02115)
 
 hook_output <- knitr::knit_hooks$get("output")
 knitr::knit_hooks$set(output = function(x, options) {
@@ -42,7 +42,8 @@ options(
   crayon.enabled = FALSE,
   bookdown.clean_book = TRUE,
   knitr.kable.NA = "NA",
-  repos = structure(c(CRAN = "https://cran.rstudio.com/"))
+  repos = structure(c(CRAN = "https://cran.rstudio.com/")),
+  future.globals.maxSize = 10^24
 )
 
 # overwrite options by output type
