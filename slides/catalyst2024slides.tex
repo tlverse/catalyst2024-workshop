@@ -11,6 +11,7 @@
 \usepackage{multicol}
 \usepackage{graphicx}
 \usepackage{etoolbox}
+\usepackage{booktabs}
 \usepackage{bm}
 \usepackage[abs]{overpic}
 \usepackage{pict2e}
@@ -1276,6 +1277,36 @@ Then, refit $\sum_{j,\beta_n(j)\not =0}\beta_j\phi_j$ unpenalized (relax-HAL).
 \item It is super-efficient corresponding with oracle model ${\cal M}_0$ the limit of HAL-working model ${\cal M}_n$ ({\bf or just efficient if ${\cal M}_0={\cal M}$}).
 \end{itemize}
 \end{frame}
+\begin{frame}{Integrating RCT with Observational Data}
+\begin{itemize}
+\item Suppose we observe data on two studies indicated by $S\in \{0,1\}$: $(S_i,W_i,A_i,Y_i)$, $i=1,\ldots,n$. 
+\item In study $S=1$, treatment is randomized (RCT), so that the ATE can be robustly estimated.
+\item Study $S=0$ is an external RWD study. 
+\item We make no other assumptions on likelihood beyond possible knowledge of $g(A\mid S,W)$.
+\item However, the RCT is underpowered due to small control arm or small overall sample size.\item Therefore, a TMLE of the ATE based on $S=1$ only would have large confidence intervals lacking power at reasonable alternatives. \item Can we utilize the external study $S=0$ from the real world to obtain a more efficient estimator of the ATE?  Without adding assumptions!
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Dang et al (2023) developed an ES-CV-TMLE. Rejects RWD if biased relative to RCT.
+\item Here, we develop an Adaptive TMLE that learns bias in RWD and corrects pooled estimator.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Motivating example: oral semaglutide on cardiovascular outcomes (Dang et al. 2023)}
+\small
+\begin{itemize}
+\item \textit{Causal question:} \textbf{risk of MACE within one year} if all patients in the target population were prescribed \textbf{oral semaglutide} plus standard-of-care compared to if all patients were prescribed \textbf{standard-of-care} alone?
+\item \textit{Set up:} a single \textbf{RCT} (PIONEER 6) vs. a \textbf{hybrid} randomized-external data study.
+\item \textit{Results:} 
+  \begin{itemize}
+  \item Under the single RCT: \\ \textbf{-1.30\% (95\% CI -2.60\%, 0.00\%)}. 
+  \item Under the hybrid design using ES-CVTMLE: \\ \textbf{-1.53\% (95\% CI -2.75\%, -0.30\%)}.
+  \end{itemize}
+\item \textit{Conclusion}: importance of the \textbf{\textit{Causal Roadmap}}, using \textbf{RWD} to inform regulatory approval process, \textbf{power gain} of test for superiority, \textbf{reduced participation-time} without initiation of a GLP1-RA.
+\end{itemize}
+\end{frame}
 
 \begin{frame}{Causal and statistical estimand}
 \begin{itemize}
@@ -1317,6 +1348,10 @@ $$\Psi^\#(P)=E_P[\Pi(0\mid W,0)\tau^S_P(W,0)-\Pi(0\mid W,1)\tau^S_P(W,1)],$$
 \end{itemize}
 \end{frame}
 
+
+
+
+
 \begin{frame}{Benefits of using A-TMLE include}
 \begin{itemize}
 \item Nominal \textbf{type I error control} without extra assumptions.
@@ -1325,61 +1360,199 @@ $$\Psi^\#(P)=E_P[\Pi(0\mid W,0)\tau^S_P(W,0)-\Pi(0\mid W,1)\tau^S_P(W,1)],$$
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Integrating RCT with Observational Data}
-\begin{itemize}
-\item Suppose we observe data on two studies indicated by $S\in \{0,1\}$: $(S_i,W_i,A_i,Y_i)$, $i=1,\ldots,n$. 
-\item In study $S=1$, treatment is randomized (RCT), so that the ATE can be robustly estimated.
-\item Study $S=0$ is an external RWD study. 
-\item We make no other assumptions on likelihood beyond possible knowledge of $g(A\mid S,W)$.
-\item However, the RCT is underpowered due to small control arm or small overall sample size.\item Therefore, a TMLE of the ATE based on $S=1$ only would have large confidence intervals lacking power at reasonable alternatives. \item Can we utilize the external study $S=0$ from the real world to obtain a more efficient estimator of the ATE?  Without adding assumptions!
-\end{itemize}
+\section{Simulations}
+
+
+\begin{frame}{Simulation 1: simple bias}
+\centering
+\vspace{1cm}
+\includegraphics[width=1\textwidth,height=0.65\textheight]{figures/simple.pdf}
 \end{frame}
 
-\begin{frame}
-\begin{itemize}
-\item Dang et al (2023) developed an ES-CV-TMLE. Rejects RWD if biased relative to RCT.
-\item Here, we develop an Adaptive TMLE that learns bias in RWD and corrects pooled estimator.
-\end{itemize}
+%\begin{frame}{What if the bias is not a simple parametric form?}\begin{itemize}
+%\item \textbf{Highly adaptive lasso (HAL)} is a maximum likelihood estimator over all (or subset of) \textit{càdlàg} functions (right continuous with left limits) with bounded variation norm (Benkeser and van der Laan 2016).\item We use HAL to data-adaptively learn the working submodel for conditional effect of the study indicator $S$.\item Advantages of HAL: \begin{itemize}\item It is \textbf{flexible} and can approximate almost all functions encountered in practice, without making any smoothness assumptions on the true functional form;\item It \textbf{converges} to the true function at a \textbf{fast} rate $n^{-1/3}(\log n)^{2(d-1)/3}$;\item It is an \textbf{MLE}.\end{itemize}\end{itemize}\end{frame}
+
+\begin{frame}{Simulation 2: complex bias}
+\centering
+\vspace{1cm}
+\includegraphics[width=1\textwidth,height=0.65\textheight]{figures/complex.pdf}
 \end{frame}
 
-\begin{frame}{Motivating example: oral semaglutide on cardiovascular outcomes (Dang et al. 2023)}
-\small
-\begin{itemize}
-\item \textit{Causal question:} \textbf{risk of MACE within one year} if all patients in the target population were prescribed \textbf{oral semaglutide} plus standard-of-care compared to if all patients were prescribed \textbf{standard-of-care} alone?
-\item \textit{Set up:} a single \textbf{RCT} (PIONEER 6) vs. a \textbf{hybrid} randomized-external data study.
-\item \textit{Results:} 
-  \begin{itemize}
-  \item Under the single RCT: \\ \textbf{-1.30\% (95\% CI -2.60\%, 0.00\%)}. 
-  \item Under the hybrid design using ES-CVTMLE: \\ \textbf{-1.53\% (95\% CI -2.75\%, -0.30\%)}.
-  \end{itemize}
-\item \textit{Conclusion}: importance of the \textbf{\textit{Causal Roadmap}}, using \textbf{RWD} to inform regulatory approval process, \textbf{power gain} of test for superiority, \textbf{reduced participation-time} without initiation of a GLP1-RA.
-\end{itemize}
+\begin{frame}{95\% CI width comparisons}
+\begin{table}[ht]
+\centering
+\caption{A-TMLE's 95\% CI width as a percentage of other methods'.}
+\label{tab:ci_width}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{ccccc}
+\toprule
+\textbf{Method} & \textbf{Scenario (a)} & \textbf{Scenario (b)} & \textbf{Scenario (c)} & \textbf{Scenario (d)} \\
+\midrule
+ES-CVTMLE & 66.1\% & 60.4\% & 98.3\% & 98.2\% \\
+Regular TMLE & 59.1\% & 61.2\% & 99.1\% & 99.1\% \\
+PROCOVA & 59.0\% & 61.1\% & 99.0\% & 99.0\% \\
+RCT-only & 59.0\% & 61.1\% & 99.0\% & 99.0\% \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
 \end{frame}
+
+%\begin{frame}{Simulation 1: super-efficiency}
+%\begin{itemize}
+%\item Combined data (sample size $n$) consists of:
+%\begin{itemize}
+%\item $\sim 20\%$ RCT patients, and
+%\item $\sim 80\%$ RWD patients.
+%\end{itemize}
+%\item RWD has both \textbf{treated} and \textbf{control} patients.
+%\item We consider 3 bias scenarios:
+%\begin{itemize}
+%\item No bias in RWD;
+%\item Small bias (learn-able) in RWD;
+%\item Large bias (learn-able) in RWD.
+%\end{itemize}
+%\end{itemize}
+%\end{frame}
+
+%\begin{frame}{Candidate estimators for comparison}
+%\begin{itemize}
+%\item A-TMLE
+%\item ES-CVTMLE (Dang et al. 2023)
+%\item TMLE (nonparametric, uses only RCT data for estimating outcome regression, but averages over pooled-covariate distribution; ``defines" the nonparametric efficiency bound)
+%\end{itemize}
+%\end{frame}
+
+%\begin{frame}{}
+%\centering
+%\vspace{1.2cm}
+%\includegraphics[width=1\textwidth,height=0.45\textheight]{mse.pdf}
+%\end{frame}
+
+%\begin{frame}{}
+%\centering
+%\vspace{1.2cm}
+%\includegraphics[width=1\textwidth,height=0.45\textheight]{relative.pdf}
+%\begin{itemize}
+%\item Reference level: TMLE for the ATE that completely ignores RWD.
+%\end{itemize}
+%\end{frame}
+
+%\begin{frame}{}
+%\centering
+%\vspace{1.2cm}
+%\includegraphics[width=1\textwidth,height=0.45\textheight]{cover.pdf}
+%\end{frame}
+
+%\begin{frame}{Simulation 2: complex bias}
+%\begin{itemize}
+%\small
+%\item \textbf{Bias is no longer learn-able by a main-term LASSO, we need to use HAL to approximate it.}
+%\end{itemize}
+%\end{frame}
+
+%\begin{frame}{}
+%\centering
+%\vspace{1.2cm}
+%\includegraphics[width=1\textwidth,height=0.45\textheight]{HAL_relative.pdf}
+%\begin{itemize}
+%\item Reference level: TMLE for the ATE that completely ignores RWD.
+%\end{itemize}
+%\end{frame}
+
+%\begin{frame}{}
+%\centering
+%\vspace{1.2cm}
+%\includegraphics[width=1\textwidth,height=0.45\textheight]{HAL_cover.pdf}
+%\end{frame}
+
 
 \subsection{Longitudinal TMLE}
 
+\section{TMLE of Causal Effects of Multiple Time Point Interventions on Survival}
+
 \begin{frame}
-\frametitle{General Longitudinal Data Structure for Complex Observational Studies}
-We observe $n$ i.i.d.~copies of a longitudinal data structure
+\frametitle{General Longitudinal Data Structure}
+We observe $n$ i.i.d. copies of a longitudinal data structure
 \[
 O=(L(0),A(0),\ldots,L(K),A(K),Y=L(K+1)),\]
-where $A(t)$ denotes a discrete valued {\bf intervention node} whose effect we
-desire to evaluate,  $L(t)$ is an intermediate covariate and outcome realized in
-between intervention nodes $A(t-1)$ and $A(t)$, $t=0,\ldots,K$, and $Y$ is
-a final {\bf outcome} of interest.
+where $A(t)$ denotes a discrete valued intervention node,  $L(t)$ is an intermediate covariate realized after 
+$A(t-1)$ and  before $A(t)$, $t=0,\ldots,K$, and $Y$ is a final outcome of interest.
 \ \newline
-{\bf Survival outcome example:}
-For example,
+{\bf Survival example:}
+For example, 
 \begin{eqnarray*}
 A(t)&=&(A_1(t),A_2(t))\\
-A_1(t)&=& \mbox{Indicator of being treated at time $t$}\\
-A_2(t)&=& \mbox{Indicator of being right-censored at time $t$}\\
-%\Delta&=&\mbox{Indicator of observing failure}\\
-Y(t)&=&\mbox{Indicator of observing a failure by time $t$}\\
-L(t)&&\mbox{Vector of time-dependent measurements}\\
-Y(t)&\subset& L(t)\mbox{and  $Y=Y(K+1)$}.
+A_1(t)&=& I(\mbox{Treated at time $t$})\\
+A_2(t)&=& I(\min(T,C)\leq t,\Delta=0)\mbox{ right-censoring indicator process}\\
+\Delta&=&I(T\leq C)\mbox{ failure indicator}\\
+Y(t)&=&I(\min(T,C)\leq t,\Delta=1)\mbox{ survival indicator process}\\
+Y(t)&\subset& L(t)\mbox{ $Y=Y(K+1)$}.
 \end{eqnarray*}
 \end{frame}
+
+\begin{frame}
+\frametitle{Likelihood and Statistical Model}
+The probability distribution $P_0$ of $O$ can be factorized according to the time-ordering as 
+\begin{eqnarray*}
+p_0(O)&=&\prod_{t=0}^{K+1} p_0(L(t)\mid Pa(L(t)) ) \prod_{t=0}^K p_0(A(t)\mid Pa(A(t)) )\\
+&\equiv& \prod_{t=0}^{K+1}q_{0,L(t)}(O)\prod_{t=0}^K g_{0,A(t)}(O)\\
+&\equiv& q_0g_0,
+\end{eqnarray*}
+where $Pa(L(t))\equiv (\bar{L}(t-1),\bar{A}(t-1))$ and $Pa(A(t))\equiv (\bar{L}(t),\bar{A}(t-1))$ denote the parents  of $L(t)$ and $A(t)$ in the time-ordered sequence, respectively. 
+The $g_0$-factor represents the intervention mechanism.\\
+{\bf Statistical Model:}
+We make no assumptions on $q_0$, but could make assumptions on $g_0$.
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Statistical Target Parameter: $G$-computation Formula for Post-dynamic-Intervention Distribution}
+\begin{itemize}
+\item $p^{g^*}_0=q_0(o)g^*(o)$ is the $G$-computation formula for the post-intervention distribution of $O$ under the stochastic intervention $g^*=\prod_{t=0}^K g^*_{A(t)}(O)$.
+\item
+In particular, for a dynamic intervention $d=(d_t: t=0,\ldots,K)$ with $d_t(\bar{L}(t),\bar{A}(t-1))$ being the treatment at time $t$, the $G$-computation formula is given by \begin{align}
+\label{eqn:Gcomp}
+p^d_0(l)=\prod_{t=0}^{K+1}q_{0,L(t)}^d(\bar{l}(t)),
+\end{align}
+%Susan: replace 1 by bar{a}(k-1)
+where $q_{L(t)}^d(\bar{l}(t))=q_{L(t)}(l(t)\mid \bar{l}(t-1),\bar{A}(t-1)=\bar{d}_{t-1}(\bar{l}(t-1)) )$. 
+\item
+Let $L^d=(L(0),L^d(1),\ldots,Y^d=L^d(K+1))$ denote the random variable with probability distribution $P^d$. 
+%\item This is the so called $G$-computation formulafor the post-intervention distribution corresponding with the dynamic intervention $d$.
+%It is naturally generalized to the post-intervention distribution for stochastic interventions defined by user-supplied choice $g^*$. 
+\end{itemize}
+\end{frame}
+
+%\begin{frame}\ \nlOur statistical target parameter is the mean of $Y^a$: $\Psi(P)=E_{P^a}Y^a$, where$\Psi:{\cal M}\rightarrow\openr$. \ \nlThis target parameter only depends on $P$ through $Q=Q(P)$. Therefore, we will also denote the target parameter mapping with $\Psi:{\cal Q}=\{Q(P):P\in {\cal M}\}\rightarrow\openr$ so that $\psi_0=\Psi(Q_0)$.\end{frame}
+\section{Sequential Regression Representation of Treatment Specific Mean}
+
+\begin{frame}
+\frametitle{A Sequential Regression $G$-computation Formula (Bang, Robins, 2005)}
+\begin{itemize}
+\item
+By the iterative conditional expectation rule (tower rule), we have\[E_{P^d}Y^d=E\ldots E(E(Y^d\mid \bar{L}^d(K))\mid L^d(K-1))\ldots \mid L(0)).\]
+\item
+In addition, the conditional expectation, given $\bar{L}^d(K)$ is equivalent with conditioning on 
+$\bar{L}(K),\bar{A}(K-1)=\bar{d}_{K-1}(\bar{L}(K-1))$.
+\end{itemize}
+In this manner, one can represent $E_{P^d}Y^d$ as an iterative conditional expectation, first take conditional expectation, given $\bar{L}^d(K)$ (equivalent with $\bar{L}(K),\bar{A}(K-1)$), then take the conditional expectation, given $\bar{L}^d(K-1)$ (equivalent with $\bar{L}(K-1),\bar{A}(K-2)$),  and so on, until the conditional expectation given $L(0)$, and finally take the mean over $L(0)$.
+\end{frame}
+
+%\section{Marginal Structural working model}\begin{frame}\frametitle{Marginal structural working models}We can  define a target parameter as projection of the true dose-response curve $(E_{P^d}Y^d:d\in {\cal D})$onto a working model $\{d\rightarrow m_{\beta}(d):\beta\}$.For example, if $Y(t)\in [0,1]$, we can define\[\begin{array}{l}\Psi(P_0))=\arg\max{\beta} \\E_0 \sum_t\sum_{d\in {\cal D}} h(d,t,V)\!\left\{ E_0(Y^d(t))\log m_{\beta}(d,t)\right . \\\hfill +\left . (1-E_0(Y^d(t))\log(1\!-\!m_{\beta}(d,t))\right\}\!\end{array}\]
+
+%\ \nlWe can also define $E_{P^d}Y^d$ as the treatment-specific mean defined by the $G$-computation formulafor a dynamic treatment $d$. \ \nlTarget parameters can then be defined as the projection of the true dose-response curve$(E_{P^d}Y^d:d\in {\cal D})$, ${\cal D}$ a collection of dynamic treatment rules, onto a working model $\{d\rightarrow m_{\beta}(d):\beta\}$. \end{frame}
+
+\begin{frame}{TMLE}
+\begin{itemize}
+\item A likelihood based TMLE was developed (van der Laan, Stitelman, 2010).
+\item A sequential regression TMLE $\Psi(Q_n^*)$ was developed for $EY_d$ in van der Laan, Gruber (2012).
+\item The latter builds on Bang and Robins (2005) by   putting their innovative double robust efficient estimating equation method, which uses sequential clever covariate regressions to estimate the nuisance parameters of estimating equation, into  aTMLE framework.
+\item A TMLE for Euclidean summary measures of $(EY_d:d\in {\cal D})$ defined by marginal structural working models
+is developed  in Petersen et al. (2013);
+  \item A new (analogue to sequential regression) TMLE allowing for {\em continuous valued monitoring and time till event} is coming (Rijtgaard, van der Laan, 2019).
+ \end{itemize}
+ \end{frame}
 
 
 \begin{frame}{A real-world CER study comparing different rules for treatment intensification for diabetes}
@@ -1411,35 +1584,6 @@ Y(t)&\subset& L(t)\mbox{and  $Y=Y(K+1)$}.
 \item {\bf Treatment} is the indicator being on ''treatment intensification'' (TI)
 \item $n\approx 51,000$ with a median follow-up of 2.5 years.
 \item {\bf Target estimand:} What would survival look like if treatment is intensified when $A1c<x\%$ for various levels $x=7,7.5,8,8.5$?
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Likelihood and Statistical Model}
-The probability density/likelihood $p_0$ of $O$ can be {\bf factorized according to the time-ordering} as
-\begin{eqnarray*}
-p_0(O)&=&\prod_{t=0}^{K+1} p_0(L(t)\mid Pa(L(t)) ) \prod_{t=0}^K p_0(A(t)\mid Pa(A(t)) )\\
-&\equiv& \prod_{t=0}^{K+1}q_{0,L(t)}(O)\prod_{t=0}^K g_{0,A(t)}(O)\\
-&\equiv& q_0g_0,
-\end{eqnarray*}
-where $Pa(L(t))\equiv (\bar{L}(t-1),\bar{A}(t-1))$ and $Pa(A(t))\equiv (\bar{L}(t),\bar{A}(t-1))$ denote the parents  of $L(t)$ and $A(t)$ in the time-ordered sequence, respectively.
-The $g_0$-factor represents the {\bf intervention mechanism}.\newline
-{\bf Statistical Model:}
-We make no assumptions on $q_0$, but could make assumptions on $g_0$.
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Statistical Target Parameter: $G$-computation Formula for Post-dynamic-Intervention Distribution}
-\begin{itemize}
-\item $p^{g^*}_0=q_0(o)g^*(o)$ is the {\bf $G$-computation formula for the post-intervention distribution} of $O$ under the stochastic intervention $g^*=\prod_{t=0}^K g^*_{A(t)}(O)$.
-\item Under {\bf sequential randomization assumption} (SRA) and a positivity assumption, the post-intevention distribution $p_{g^*}$ of $O$ equals $p_{g^*}$, where post-intervention distribution is defined by the structural equation model in which the equations for the intervention nodes $A(t)$ are replaced by drawing from $g^*_{A(t)}$.
-\item {\bf Causal estimand}: $\mathbb{E}_{\textcolor{red}{P_{g^{\star}}}}Y$, mean outcome of $Y$ under post-intervention distribution, or survival rate if $Y$ is indicator of survival, under  post-intervention $P_{g^*}$.
-\item {\bf Target estimand}: $\mathbb{E}_{\textcolor{blue}{P^{g^{\star}}}}Y$, mean outcome of $Y$ under $G$-computation density.
-%\itemIn particular, for a dynamic intervention $d=(d_t: t=0,\ldots,K)$ with $d_t(\bar{L}(t),\bar{A}(t-1))$ being the treatment at time $t$, the $G$-computation formula is given by \begin{align*}\label{eqn:Gcomp}p^d_0(l)=\prod_{t=0}^{K+1}q_{0,L(t)}^d(\bar{l}(t)),\end{align*}
-%Susan: replace 1 by bar{a}(k-1)where $q_{L(t)}^d(\bar{l}(t))=q_{L(t)}(l(t)\mid \bar{l}(t-1),\bar{A}(t-1)=\bar{d}_{t-1}(\bar{l}(t-1)) )$. \itemLet $L^d=(L(0),L^d(1),\ldots,Y^d=L^d(K+1))$ denote the random variable with probability distribution $P^d$.
-%\item This is the so called $G$-computation formulafor the post-intervention distribution corresponding with the dynamic intervention $d$.
-%It is naturally generalized to the post-intervention distribution for stochastic interventions defined by user-supplied choice $g^*$.
 \end{itemize}
 \end{frame}
 
