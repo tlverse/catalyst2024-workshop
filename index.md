@@ -1,10 +1,10 @@
 ---
 knit: "bookdown::render_book"
-title: "[Workshop] Targeted Learning in the `tlverse`"
-subtitle: "Causal Inference Meets Machine Learning"
+title: "[Catalyst 2024] Targeted Learning in `R` with the `tlverse`"
+subtitle: "Bridging Machine Learning with Causal and Statistical Inference"
 author: "Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana
   Malenica, Rachael Phillips"
-date: "updated: November 13, 2024"
+date: "updated: November 14, 2024"
 documentclass: book
 site: bookdown::bookdown_site
 bibliography: [book.bib, packages.bib]
@@ -16,8 +16,8 @@ colorlinks: yes
 lot: yes
 lof: yes
 always_allow_html: yes
-url: 'https\://tlverse.org/tlverse-workshops/'
-github-repo: tlverse/tlverse-workshops
+url: 'https\://tlverse.org/catalyst2024-workshop/'
+github-repo: tlverse/catalyst2024-workshop
 graphics: yes
 description: "Open source, reproducible teaching materials accompanying a
   workshop or short course on Targeted Learning with the [`tlverse` software
@@ -26,15 +26,29 @@ description: "Open source, reproducible teaching materials accompanying a
 
 # Welcome! {-}
 
-This open source, reproducible vignette is for a workshop on the
-Targeted Learning framework for statistical and causal inference with machine
-learning.  Beyond introducing Targeted Learning, the workshop focuses on
-applying the methodology in practice using the [`tlverse` software
-ecosystem](https://github.com/tlverse).  These materials are based on a working
-draft of the book [*Targeted Learning in `R`: Causal Data Science with the
-`tlverse` Software Ecosystem*](https://tlverse.org/tlverse-handbook/), which
-includes in-depth discussion of these topics and much more, and may serve as a
-useful reference to accompany these workshop materials.
+This open source, reproducible set of vignettes accompanies a short course
+titled "[Targeted Learning: Bridging Machine Learning with Causal and
+Statistical
+Inference](https://catalyst.harvard.edu/calendar/event/biostatistics-short-course-targeted-learning-bridging-machine-learning-with-causal-and-statistical-inference-november-15/),"
+given as part of the [Harvard Catalyst Biostatistics
+Program](https://catalyst.harvard.edu/biostatistics/) in November 2024. **The
+slide deck for this short course are available at
+<https://github.com/tlverse/catalyst2024-workshop/blob/master/slides/catalyst2024slides.pdf>**
+
+The set of vignettes focuses on demonstrating how to apply Targeted Learning
+methodology in practice using the [`tlverse` software
+ecosystem](https://github.com/tlverse), a set of `R` packages that provide an
+implementation of targeted maximum likelihood (or minimum loss-based)
+estimation based on the mathematical underpinnings of the methodology. These
+materials are derived from a working draft of the book [*Targeted Learning in
+`R`: Causal Data Science with the `tlverse` Software
+Ecosystem*](https://tlverse.org/tlverse-handbook/), which includes in-depth
+discussion of these topics and much more, and may serve as a useful reference
+to accompany these short course materials. Please note that the book is very
+much in a draft phase and is made *publicly available for comment*, not as a
+error-free reference. The book is aimed at non-statistician scientists who may
+wish to learn about the Targeted Learning framework and apply the ideas using
+the `tlverse` software suite.
 
 <img style="float: center; margin-right: 1%; margin-bottom: 0.01em"
      src="img/logos/tlverse-logo.svg" width="30%" height="30%">
@@ -48,34 +62,48 @@ useful reference to accompany these workshop materials.
 ## Important links {-}
 
 * __Load R environment__: Please set up the `R` virtual environment using the
-  [instructions](https://github.com/tlverse/tlverse-workshops/blob/master/install.md).
+  [instructions](https://github.com/tlverse/catalyst2024-workshop/blob/master/install.md).
   If you experiencing issues with the `R` environment, you may install the 
-  relevant software packages before the workshop using the [installation
-  script](https://github.com/tlverse/tlverse-workshops/blob/master/install.R).
-
+  relevant software packages before the short course using the [installation
+  script](https://github.com/tlverse/catalyst2024-workshop/blob/master/install.R).
 * You will probably exceed the GitHub API rate limit during this installation,
   which will throw an error. This issue and the solution are addressed
   [here](#installtlverse).
 
-* __Code__: `R` script files for each section of the workshop are available via
-  the GitHub repository for the workshop at
-  https://github.com/tlverse/tlverse-workshops/tree/master/R_code
+## Course description {-}
 
-## About this workshop {-}
+In fields ranging from public health and medicine to political science and
+economics, great care is required to disentangle intricate causal relationships
+using real-world data and inform decision-making efforts. Causal inference has
+emerged as a methodological framework for translating substantive questions
+into well-defined causal estimands, expressing identification assumptions
+necessary for these to be learned from data, and estimating the resultant
+quantities via standardization (i.e., outcome regression) and inverse
+probability weighting. However, such progress has failed to keep pace with
+developments in machine learning; thus, the practice of causal inference is
+often marred by over-reliance on restrictive modeling practices. The Targeted
+Learning (TL) paradigm presents a solution to this problem by unifying aspects
+of semi-parametric statistical theory, machine learning, and causal inference.
+The result is a methodological toolbox for evaluating causal effects via
+state-of-the-art estimators that are both robust (to model misspecification)
+and efficient (minimal variance, i.e., narrowest possible confidence
+intervals). This short course introduces the TL paradigm, beginning with the
+guiding philosophy and underlying scientific motivations and going on to
+discuss estimation algorithms and their practical implementation through
+open-source software tools (e.g., the TLverse: <https://github.com/tlverse>),
+addressing basic theoretical underpinnings along the way. Specific topics to be
+covered include targeted maximum likelihood estimation (TMLE) and collaborative
+TMLE (C-TMLE) for confounder selection (and, time permitting, adaptive TMLE
+(A-TMLE) for hybrid designs that combine experimental and external data); TMLE
+algorithms to estimate the causal effects of interventions on binary and
+continuous exposures; complications for addressing time-varying confounding
+and/or censoring; and incorporating machine learning via the super learner and
+highly adaptive lasso algorithms. This short course incorporates a mix of case
+studies, discussion, and hands-on programming exercises to allow participants
+to build familiarity with techniques and tools that will translate to
+improvements in real-world data analytic practice.
 
-This workshop will provide a comprehensive introduction to the field of
-_Targeted Learning (TL)_ for statistical and causal inference, and the 
-corresponding [`tlverse` software ecosystem](https://github.com/tlverse). 
-Emphasis will be placed on super learning (SL) and targeted minimum loss-based 
-estimation (TMLE) for causal effects of single time point interventions. TMLE 
-represents a finite-sample robust, efficient substitution estimation strategy 
-that uses super (ensemble machine) learning to flexibly adjust for confounding 
-while yielding valid statistical inference. We will discuss TMLE for the causal 
-effects of static and dynamic interventions; time permitting, additional topics 
-to be discussed will include estimation of the causal effects of optimal dynamic 
-and stochastic interventions.
-
-In addition to discussion, this workshop will incorporate both interactive
+In addition to discussion, this short course will incorporate both interactive
 activities and hands-on, guided `R` programming exercises, to allow participants
 the opportunity to familiarize themselves with methodology and tools that will
 translate to real-world data analysis. It is highly recommended for participants
@@ -84,36 +112,13 @@ probability distributions, confidence intervals, hypothesis testing, and
 regression. Advanced knowledge of mathematical statistics is useful but not
 necessary. Familiarity with the `R` programming language will be essential.
 
-## Outline {-}
+## Schedule {-}
 
-* _Warm-up_: The Roadmap of Targeted Learning and [Why We Need A Statistical
-  Revolution](https://senseaboutscienceusa.org/super-learning-and-the-revolution-in-knowledge/)
-  with an *[introductory video lecture by Mark van der Laan and Alan
-  Hubbard](https://www.dropbox.com/s/7b6ru2ahycqq80v/ENAR2021-lecture.mp4?dl=0)*
-  (__Please watch this hour-long lecture before the workshop.__)
-* 09:00-09:30A: [Introduction to the `tlverse` Software
-  Ecosystem](https://tlverse.org) and the [WASH Benefits
-  data](http://www.washbenefits.net/)
-* 09:30-10:00A: Super learning with the [`sl3` `R`
-  package](https://github.com/tlverse/sl3)
-* 10:00-11:00A: Programming exercises with `sl3`
-* 11:00-11:15A: Morning Coffee Break and Q&A
-* 11:15-12:00P: Targeted Learning for causal inference with the [`tmle3` `R`
-  package](https://github.com/tlverse/tmle3)
-* 12:00-12:45P: Programming exercises with `tmle3`
-* 12:45-01:30P: Lunch Break
-* 01:30-02:15P: Optimal treatment regimes with the [`tmle3mopttx` `R`
-  package](https://github.com/tlverse/tmle3mopttx)
-* 02:15-03:00P: Programming exercises with `tmle3mopttx`
-* 03:00-03:15P: Afternoon Coffee Break
-* 03:15-04:00P: Stochastic treatment regimes with the [`tmle3shift` `R`
-  package](https://github.com/tlverse/tmle3shift)
-* 04:00-04:30P: Programming exercises with `tmle3shift`
-* 04:30-05:00P: Concluding remarks and discussion
-
-<!--
-__NOTE: All listings are in Pacific Time.__
--->
+- 8:30-9:00: Registration and introductions
+- 9:00-12:15: Introductory topics, with coffee break at ~10:30am
+- 12:15-1:00: Lunch break with open discussion (catered lunch will be served)
+- 1:00-4:00: Advanced topics, with coffee break at ~2:30pm
+- 4:00-4:30: Concluding remarks and closing discussion
 
 ## About the instructors {-}
 
@@ -130,9 +135,35 @@ estimation and prediction with both censored and uncensored data. Building on
 this work, his research group developed targeted maximum likelihood estimation
 for a target parameter of the data-generating distribution in arbitrary
 semiparametric and nonparametric models, as a generic optimal methodology for
-statistical and causal inference. Most recently, Mark's group has focused in
-part on the development of a centralized, principled set of software tools for
-targeted learning, the `tlverse`.
+statistical and causal inference, including the highly adaptive lasso. Most
+recently, Mark's group has partially focused in part on the development of a
+centralized, principled set of software tools for targeted learning, the
+`tlverse`.
+
+### Nima Hejazi {-}
+
+[Nima Hejazi](https://www.hsph.harvard.edu/profile/nima-s-hejazi/), PhD, is an
+Assistant Professor of Biostatistics at the Harvard T.H. Chan School of Public
+Health. He received his PhD in biostatistics at UC Berkeley and afterwards held
+an NSF mathematical sciences postdoctoral research fellowship, during which
+time he served as a core member of the COVID-19 Prevention Network's
+biostatistics response team. Nima's research interests sit at the intersection
+of causal inference, machine learning, semiparametric estimation, and
+computational statistics; areas of recent emphasis have included causal
+mediation analysis, efficient estimation under outcome-dependent and/or biased
+sampling designs, and debiased/targeted machine learning incorporating sieve
+estimation. His recent work has primarily been driven by applications in
+clinical trials and observational studies of the efficacy of vaccines and
+therapeutics. Nima is passionate about statistical computing and open source
+software design standards for statistical data science, and he has co-led or
+contributed significantly to several core `tlverse` packages (`hal9001`, `sl3`,
+`tmle3`, `origami`, `tmle3shift`, `tmle3mediate`).
+
+## About the authors {-}
+
+The instructors are only a subset of the team that contributed to the
+development of these workshop materials. This work would not have been possible
+without the following core team members:
 
 ### Alan Hubbard {-}
 
@@ -152,24 +183,6 @@ currently leading the software development effort that has produced the
 `tlverse` ecosystem of R packages and related software tools. Jeremy earned his
 PhD in Biostatistics from UC Berkeley in 2016, primarily under the supervision
 of Alan Hubbard.
-
-### Nima Hejazi {-}
-
-[Nima Hejazi](https://nimahejazi.org), PhD, is an incoming Assistant Professor
-of Biostatistics at the [Harvard T.H. Chan School of Public
-Health](https://www.hsph.harvard.edu/biostatistics/). He received his PhD in
-biostatistics at UC Berkeley, working under the supervision of Mark van der Laan
-and Alan Hubbard, and afterwards held an NSF postdoctoral research fellowship.
-Nima's research interests blend causal inference, machine learning,
-semiparametric estimation, and computational statistics -- areas of recent
-emphasis include causal mediation analysis, efficiency under biased sampling
-designs, non/semi-parametric sieve estimation with machine learning, and
-targeted loss-based estimation. His work is primarily driven by applications in
-clinical trials (esp. vaccine efficacy trials), infectious disease epidemiology,
-and computational biology. Nima is passionate about statistical computing
-and open source software design standards for statistical data science, and he
-has co-led or contributed significantly to many `tlverse` packages (`hal9001`,
-`sl3`, `tmle3`, `origami`, `tmle3shift`, `tmle3mediate`).
 
 ### Ivana Malenica {-}
 
