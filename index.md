@@ -59,6 +59,7 @@ the `tlverse` software suite.
 <p style="clear: both;">
 <br>
 
+<!--
 ## Important links {-}
 
 * __Load R environment__: Please set up the `R` virtual environment using the
@@ -69,6 +70,7 @@ the `tlverse` software suite.
 * You will probably exceed the GitHub API rate limit during this installation,
   which will throw an error. This issue and the solution are addressed
   [here](#installtlverse).
+-->
 
 ## Course description {-}
 
