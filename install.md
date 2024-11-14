@@ -2,8 +2,8 @@
 
 These instructions are intended to help with setting up the included [`renv`
 virtual environment](https://rstudio.github.io/renv/index.html), which ensures
-all participants are using the same exact set of `R` packages (and package
-versions). A few important notes to keep in mind:
+all course participants are using the same exact set of `R` packages (and
+package versions). A few important notes to keep in mind:
 
 * When `R` is started from the top level of this repository, `renv` is
   activated automatically. There is no further action required on your part. If
@@ -16,7 +16,7 @@ versions). A few important notes to keep in mind:
 * Upon an initial attempt, `renv` will prompt you to install packages listed in
   the `renv.lock` file, by printing a message like the following:
   ```r
-  * Project 'PATH/TO/tlverse_workshops' loaded. [renv 0.13.2]
+  * Project 'PATH/TO/catalyst2024_workshop' loaded. [renv 0.17.3]
   * The project may be out of sync -- use `renv::status()` for more details.
   > renv::status()
   The following package(s) are recorded in the lockfile, but not installed:

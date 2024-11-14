@@ -1,4 +1,20 @@
-# Harvard Catalyst Workshop 2024 [![Booklet](https://github.com/tlverse/catalyst2024-workshop/actions/workflows/bookdown.yml/badge.svg)](https://github.com/tlverse/catalyst2024-workshop/actions/workflows/bookdown.yml)
+# [Harvard Catalyst Workshop 2024](https://catalyst.harvard.edu/calendar/event/biostatistics-short-course-targeted-learning-bridging-machine-learning-with-causal-and-statistical-inference-november-15/) [![Booklet](https://github.com/tlverse/catalyst2024-workshop/actions/workflows/bookdown.yml/badge.svg)](https://github.com/tlverse/catalyst2024-workshop/actions/workflows/bookdown.yml)
+
+## Instructors
+
+- [Mark van der Laan](https://ctml.berkeley.edu/people/mark-van-der-laan-phd),
+  University of California, Berkeley
+- [Nima Hejazi](https://www.hsph.harvard.edu/profile/nima-s-hejazi/), Harvard
+  T.H. Chan School of Public Health (webpage:
+
+## Schedule
+
+- 8:30-9:00: Registration and introductions
+- 9:00-12:15: Introductory topics (slides 1-53 + web tutorials), with coffee
+  break at ~10:30am
+- 12:15-1:00: Lunch break with open discussion (catered lunch will be served)
+- 1:00-4:00: Advanced topics (slides 54-124), with coffee break at ~2:30pm
+- 4:00-4:30: Concluding remarks and closing discussion
 
 ## Course description
 
@@ -32,15 +48,6 @@ highly adaptive lasso algorithms. This short course incorporates a mix of case
 studies, discussion, and hands-on programming exercises to allow participants
 to build familiarity with techniques and tools that will translate to
 improvements in real-world data analytic practice.
-
-<https://catalyst.harvard.edu/calendar/event/biostatistics-short-course-targeted-learning-bridging-machine-learning-with-causal-and-statistical-inference-november-15/>
-
-## Instructors
-
-- Mark van der Laan, University of California, Berkeley (webpage:
-  <https://ctml.berkeley.edu/people/mark-van-der-laan-phd>)
-- Nima Hejazi, Harvard T.H. Chan School of Public Health (webpage:
-  <https://www.hsph.harvard.edu/profile/nima-s-hejazi/>)
 
 ## Recommended background
 

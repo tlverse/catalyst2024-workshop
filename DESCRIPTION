@@ -55,14 +55,14 @@ Suggests:
 Remotes:
   github::rstudio/bslib,
   github::rstudio/bookdown,
-  github::tlverse/sl3@devel,
+  github::tlverse/sl3@fix-tests,
   github::tlverse/tmle3@master,
   github::tlverse/tmle3mopttx@master,
   github::tlverse/tmle3shift@master,
   github::tlverse/tmle3mediate@master,
-  github::tlverse/hal9001@devel,
+  github::tlverse/hal9001,
   github::nhejazi/haldensify@master
 URL:
-  https://github.com/tlverse/tlverse-workshops,
-  https://tlverse.org/tlverse-workshops
-BugReports: https://github.com/tlverse/tlverse-workshops/issues
+  https://github.com/tlverse/catalyst2024-workshop,
+  https://tlverse.org/catalyst2024-workshop
+BugReports: https://github.com/tlverse/catalyst2024-workshop/issues
