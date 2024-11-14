@@ -114,11 +114,11 @@ necessary. Familiarity with the `R` programming language will be essential.
 
 ## Schedule {-}
 
-- 8:30-9:00: Registration and introductions
-- 9:00-12:15: Introductory topics, with coffee break at ~10:30am
-- 12:15-1:00: Lunch break with open discussion (catered lunch will be served)
-- 1:00-4:00: Advanced topics, with coffee break at ~2:30pm
-- 4:00-4:30: Concluding remarks and closing discussion
+- 8:30-9:00am: Registration and introductions
+- 9:00am-12:15pm: Introductory topics, with coffee break at ~10:30am
+- 12:15-1:00pm: Lunch break with open discussion
+- 1:00-4:00pm: Advanced topics, with coffee break at ~2:30pm
+- 4:00-4:30pm: Concluding remarks and closing discussion
 
 ## About the instructors {-}
 
