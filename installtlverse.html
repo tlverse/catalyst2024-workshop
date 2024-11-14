@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 1 Install tlverse software | [Workshop] Targeted Learning in the tlverse</title>
+<meta name="author" content="Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana Malenica, Rachael Phillips">
+<meta name="description" content="The tlverse ecosystem of packages are currently hosted at https://github.com/tlverse, not fully available on CRAN yet. You can use the usethis package to install all tlverse packages or specific...">
+<meta name="generator" content="bookdown 0.41.1 with bs4_book()">
+<meta property="og:title" content="Chapter 1 Install tlverse software | [Workshop] Targeted Learning in the tlverse">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://tlverse.org/tlverse-workshops/installtlverse.html">
+<meta property="og:description" content="The tlverse ecosystem of packages are currently hosted at https://github.com/tlverse, not fully available on CRAN yet. You can use the usethis package to install all tlverse packages or specific...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 1 Install tlverse software | [Workshop] Targeted Learning in the tlverse">
+<meta name="twitter:description" content="The tlverse ecosystem of packages are currently hosted at https://github.com/tlverse, not fully available on CRAN yet. You can use the usethis package to install all tlverse packages or specific...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="libs/vis-9.1.0/vis-network.min.css" rel="stylesheet">
+<script src="libs/vis-9.1.0/vis-network.min.js"></script><script src="libs/visNetwork-binding-2.1.2/visNetwork.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet">
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+</head>
+<body>
+<span class="math inline">
+    \(\DeclareMathOperator{\expit}{expit}\)
+    \(\DeclareMathOperator{\logit}{logit}\)
+    \(\DeclareMathOperator*{\argmin}{\arg\!\min}\)
+    \(\newcommand{\indep}{\perp\!\!\!\perp}\)
+    \(\newcommand{\coloneqq}{\mathrel{=}}\)
+    \(\newcommand{\R}{\mathbb{R}}\)
+    \(\newcommand{\E}{\mathbb{E}}\)
+    \(\newcommand{\M}{\mathcal{M}}\)
+    \(\renewcommand{\P}{\mathbb{P}}\)
+    \(\newcommand{\I}{\mathbb{I}}\)
+    \(\newcommand{\1}{\mathbbm{1}}\)
+    </span>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Causal Inference Meets Machine Learning">[Workshop] Targeted Learning in the <code>tlverse</code></a>:
+        <small class="text-muted">Causal Inference Meets Machine Learning</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome!</a></li>
+<li><a class="" href="introduction.html">Introduction</a></li>
+<li class="book-part">Part 1: Preliminaries</li>
+<li><a class="" href="setting-up-r-and-rstudio.html">Setting up R and RStudio</a></li>
+<li><a class="active" href="installtlverse.html"><span class="header-section-number">1</span> Install tlverse software</a></li>
+<li><a class="" href="supplemental-learning-resources.html">Supplemental learning resources</a></li>
+<li class="book-part">Part 2: The tlverse</li>
+<li><a class="" href="what-is-the-tlverse.html">What is the tlverse?</a></li>
+<li><a class="" href="primer-on-the-r6-class-system.html">Primer on the R6 Class System</a></li>
+<li class="book-part">Part 3: Foundations</li>
+<li><a class="" href="intro.html"><span class="header-section-number">2</span> The Roadmap for Targeted Learning</a></li>
+<li><a class="" href="example-dataset.html">Example Dataset</a></li>
+<li><a class="" href="origami.html"><span class="header-section-number">3</span> Cross-validation</a></li>
+<li><a class="" href="sl3.html"><span class="header-section-number">4</span> Super Learning</a></li>
+<li><a class="" href="tmle3.html"><span class="header-section-number">5</span> The TMLE Framework</a></li>
+<li class="book-part">Part 4: Advanced Topics</li>
+<li><a class="" href="optimal-individualized-treatment-regimes.html"><span class="header-section-number">6</span> Optimal Individualized Treatment Regimes</a></li>
+<li><a class="" href="stochastic-treatment-regimes-optional.html"><span class="header-section-number">7</span> Stochastic Treatment Regimes (optional)</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/tlverse/tlverse-workshops">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="installtlverse" class="section level1" number="1">
+<h1>
+<span class="header-section-number">1</span> Install <code>tlverse</code> software<a class="anchor" aria-label="anchor" href="#installtlverse"><i class="fas fa-link"></i></a>
+</h1>
+<p>The <code>tlverse</code> ecosystem of packages are currently hosted at
+<a href="https://github.com/tlverse" class="uri">https://github.com/tlverse</a>, not fully available on
+<a href="https://CRAN.R-project.org/">CRAN</a> yet. You can use the <a href="https://usethis.r-lib.org/"><code>usethis</code>
+package</a> to install all <code>tlverse</code> packages or
+specific packages:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># install all tlverse packages </span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"tlverse/tlverse"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># install a specific package (example is sl3)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"tlverse/sl3"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># install a specific branch of package (example is devel branch of sl3)</span></span>
+<span><span class="co"># (first clear workspace and restart R)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"tlverse/sl3@devel"</span><span class="op">)</span></span></code></pre></div>
+<p>The <code>tlverse</code> packages depend on other packages that are also hosted on GitHub.
+Because of this, you may see the following error:</p>
+<pre><code>Error: HTTP error 403.
+  API rate limit exceeded for 71.204.135.82. (But here's the good news:
+  Authenticated requests get a higher rate limit. Check out the documentation
+  for more details.)
+
+  Rate limit remaining: 0/60
+  Rate limit reset at: 2019-03-04 19:39:05 UTC
+
+  To increase your GitHub API rate limit
+  - Use `usethis::browse_github_pat()` to create a Personal Access Token.
+  - Use `usethis::edit_r_environ()` and add the token as `GITHUB_PAT`.</code></pre>
+<p>This just means that <code>R</code> tried to install too many packages from GitHub in too
+short of a window. To fix this, you need to tell <code>R</code> how to use GitHub as your
+user (you’ll need a GitHub user account). Follow these two steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>Type <code>usethis::browse_github_pat()</code> in your <code>R</code> console, which will direct
+you to GitHub’s page to create a New Personal Access Token (PAT).</p></li>
+<li><p>Create a PAT simply by clicking “Generate token” at the bottom of the page.</p></li>
+<li><p>Copy your PAT, a long string of lowercase letters and numbers.</p></li>
+<li>
+<p>Type <code><a href="https://usethis.r-lib.org/reference/edit.html">usethis::edit_r_environ()</a></code> in your <code>R</code> console, which will open your
+<code>.Renviron</code> file in the source window of RStudio.</p>
+<ol style="list-style-type: lower-alpha">
+<li>If your <code>.Renviron</code> file does not pop-up after calling
+<code><a href="https://usethis.r-lib.org/reference/edit.html">usethis::edit_r_environ()</a></code>; then try inputting
+<code>Sys.setenv(GITHUB_PAT = "yourPAT")</code>, replacing your PAT with inside the
+quotes. If this does not error, then skip to step 8.</li>
+</ol>
+</li>
+<li><p>In your <code>.Renviron</code> file, type <code>GITHUB_PAT=</code> and then paste your PAT after
+the equals symbol with no space.</p></li>
+<li><p>In your <code>.Renviron</code> file, press the enter key to ensure that your <code>.Renviron</code>
+ends with a new line.</p></li>
+<li><p>Save your <code>.Renviron</code> file. The example below shows how this syntax should
+look.</p></li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">GITHUB_PAT</span><span class="op">=</span><span class="va">yourPAT</span></span></code></pre></div>
+<ol start="8" style="list-style-type: decimal">
+<li>Restart R. You can restart <code>R</code> via the drop-down menu on RStudio’s “Session”
+tab, which is located at the top of the RStudio interface. You have to
+restart <code>R</code> for the changes to take effect!</li>
+</ol>
+<p>After following these steps, you should be able to successfully install the
+package which threw the error above.</p>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="setting-up-r-and-rstudio.html">Setting up R and RStudio</a></div>
+<div class="next"><a href="supplemental-learning-resources.html">Supplemental learning resources</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#installtlverse"><span class="header-section-number">1</span> Install tlverse software</a></li></ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/tlverse/tlverse-workshops/blob/master/02-preliminaries.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/tlverse/tlverse-workshops/edit/master/02-preliminaries.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>[Workshop] Targeted Learning in the <code>tlverse</code></strong>: Causal Inference Meets Machine Learning" was written by Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana Malenica, Rachael Phillips. It was last built on updated: November 13, 2024.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

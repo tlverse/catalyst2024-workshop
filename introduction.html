@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Introduction | [Workshop] Targeted Learning in the tlverse</title>
+<meta name="author" content="Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana Malenica, Rachael Phillips">
+<meta name="description" content="“One enemy of robust science is our humanity — our appetite for being right, and our tendency to find patterns in noise, to see supporting evidence for what we already believe is true, and to...">
+<meta name="generator" content="bookdown 0.41.1 with bs4_book()">
+<meta property="og:title" content="Introduction | [Workshop] Targeted Learning in the tlverse">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://tlverse.org/tlverse-workshops/introduction.html">
+<meta property="og:description" content="“One enemy of robust science is our humanity — our appetite for being right, and our tendency to find patterns in noise, to see supporting evidence for what we already believe is true, and to...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Introduction | [Workshop] Targeted Learning in the tlverse">
+<meta name="twitter:description" content="“One enemy of robust science is our humanity — our appetite for being right, and our tendency to find patterns in noise, to see supporting evidence for what we already believe is true, and to...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="libs/vis-9.1.0/vis-network.min.css" rel="stylesheet">
+<script src="libs/vis-9.1.0/vis-network.min.js"></script><script src="libs/visNetwork-binding-2.1.2/visNetwork.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet">
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+</head>
+<body>
+<span class="math inline">
+    \(\DeclareMathOperator{\expit}{expit}\)
+    \(\DeclareMathOperator{\logit}{logit}\)
+    \(\DeclareMathOperator*{\argmin}{\arg\!\min}\)
+    \(\newcommand{\indep}{\perp\!\!\!\perp}\)
+    \(\newcommand{\coloneqq}{\mathrel{=}}\)
+    \(\newcommand{\R}{\mathbb{R}}\)
+    \(\newcommand{\E}{\mathbb{E}}\)
+    \(\newcommand{\M}{\mathcal{M}}\)
+    \(\renewcommand{\P}{\mathbb{P}}\)
+    \(\newcommand{\I}{\mathbb{I}}\)
+    \(\newcommand{\1}{\mathbbm{1}}\)
+    </span>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Causal Inference Meets Machine Learning">[Workshop] Targeted Learning in the <code>tlverse</code></a>:
+        <small class="text-muted">Causal Inference Meets Machine Learning</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome!</a></li>
+<li><a class="active" href="introduction.html">Introduction</a></li>
+<li class="book-part">Part 1: Preliminaries</li>
+<li><a class="" href="setting-up-r-and-rstudio.html">Setting up R and RStudio</a></li>
+<li><a class="" href="installtlverse.html"><span class="header-section-number">1</span> Install tlverse software</a></li>
+<li><a class="" href="supplemental-learning-resources.html">Supplemental learning resources</a></li>
+<li class="book-part">Part 2: The tlverse</li>
+<li><a class="" href="what-is-the-tlverse.html">What is the tlverse?</a></li>
+<li><a class="" href="primer-on-the-r6-class-system.html">Primer on the R6 Class System</a></li>
+<li class="book-part">Part 3: Foundations</li>
+<li><a class="" href="intro.html"><span class="header-section-number">2</span> The Roadmap for Targeted Learning</a></li>
+<li><a class="" href="example-dataset.html">Example Dataset</a></li>
+<li><a class="" href="origami.html"><span class="header-section-number">3</span> Cross-validation</a></li>
+<li><a class="" href="sl3.html"><span class="header-section-number">4</span> Super Learning</a></li>
+<li><a class="" href="tmle3.html"><span class="header-section-number">5</span> The TMLE Framework</a></li>
+<li class="book-part">Part 4: Advanced Topics</li>
+<li><a class="" href="optimal-individualized-treatment-regimes.html"><span class="header-section-number">6</span> Optimal Individualized Treatment Regimes</a></li>
+<li><a class="" href="stochastic-treatment-regimes-optional.html"><span class="header-section-number">7</span> Stochastic Treatment Regimes (optional)</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/tlverse/tlverse-workshops">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="introduction" class="section level1 unnumbered">
+<h1>Introduction<a class="anchor" aria-label="anchor" href="#introduction"><i class="fas fa-link"></i></a>
+</h1>
+<blockquote>
+<p>“One enemy of robust science is our humanity — our appetite for
+being right, and our tendency to find patterns in noise, to see supporting
+evidence for what we already believe is true, and to ignore the facts that do
+not fit.”</p>
+<p>— <span class="citation">Nature Editorial (Anonymous) (<a href="references.html#ref-naturenews_2015">2015b</a>)</span></p>
+</blockquote>
+<p>Scientific research is at a unique point in history. The need to improve rigor
+and reproducibility in our field is greater than ever; corroboration moves
+science forward, yet there is a growing alarm about results that cannot be
+reproduced and that report false discoveries <span class="citation">(<a href="references.html#ref-baker2016there">Baker, 2016</a>)</span>. Consequences of
+not meeting this need will result in further decline in the rate of scientific
+progression, the reputation of the sciences, and the public’s trust in its
+findings <span class="citation">(<a href="references.html#ref-munafo2017manifesto">Munafò <em>et al.</em>, 2017</a>; <a href="references.html#ref-naturenews2_2015">Nature Editorial (Anonymous), 2015a</a>)</span>.</p>
+<blockquote>
+<p>“The key question we want to answer when seeing the results of any scientific
+study is whether we can trust the data analysis.”</p>
+<p>— <span class="citation">Peng (<a href="references.html#ref-peng2015reproducibility">2015</a>)</span></p>
+</blockquote>
+<p>Unfortunately, at its current state the culture of data analysis and statistics
+actually enables human bias through improper model selection. All hypothesis
+tests and estimators are derived from statistical models, so to obtain valid
+estimates and inference it is critical that the statistical model contains the
+process that generated the data. Perhaps treatment was randomized or only
+depended on a small number of baseline covariates; this knowledge should and
+can be incorporated in the model. Alternatively, maybe the data is
+observational, and there is no knowledge about the data-generating process (DGP).
+If this is the case, then the statistical model should contain <em>all</em> data
+distributions. In practice; however, models are not selected based on knowledge
+of the DGP, instead models are often selected based on (1) the p-values they
+yield, (2) their convenience of implementation, and/or (3) an analysts loyalty
+to a particular model. This practice of “cargo-cult statistics — the
+ritualistic miming of statistics rather than conscientious practice,”
+<span class="citation">(<a href="references.html#ref-stark2018cargo">Stark and Saltelli, 2018</a>)</span> is characterized by arbitrary modeling choices, even though
+these choices often result in different answers to the same research question.
+That is, “increasingly often, [statistics] is used instead to aid and
+abet weak science, a role it can perform well when used mechanically or
+ritually,” as opposed to its original purpose of safeguarding against weak
+science <span class="citation">(<a href="references.html#ref-stark2018cargo">Stark and Saltelli, 2018</a>)</span>. This presents a fundamental drive behind the epidemic
+of false findings that scientific research is suffering from <span class="citation">(<a href="references.html#ref-vdl2014entering">van der Laan and Starmans, 2014</a>)</span>.</p>
+<blockquote>
+<p>“We suggest that the weak statistical understanding is probably due to
+inadequate”statistics lite” education. This approach does not build up
+appropriate mathematical fundamentals and does not provide scientifically
+rigorous introduction into statistics. Hence, students’ knowledge may remain
+imprecise, patchy, and prone to serious misunderstandings. What this approach
+achieves, however, is providing students with false confidence of being able
+to use inferential tools whereas they usually only interpret the p-value
+provided by black box statistical software. While this educational problem
+remains unaddressed, poor statistical practices will prevail regardless of
+what procedures and measures may be favored and/or banned by editorials.”</p>
+<p>— <span class="citation">Szucs and Ioannidis (<a href="references.html#ref-szucs2017null">2017</a>)</span></p>
+</blockquote>
+<p>Our team at The University of California, Berkeley, is uniquely positioned to
+provide such an education. Spearheaded by Professor Mark van der Laan, and
+spreading rapidly by many of his students and colleagues who have greatly
+enriched the field, the aptly named “Targeted Learning” methodology targets the
+scientific question at hand and is counter to the current culture of
+“convenience statistics” which opens the door to biased estimation, misleading
+results, and false discoveries. Targeted Learning restores the fundamentals that
+formalized the field of statistics, such as the that facts that a statistical
+model represents real knowledge about the experiment that generated the data,
+and a target parameter represents what we are seeking to learn from the data as
+a feature of the distribution that generated it <span class="citation">(<a href="references.html#ref-vdl2014entering">van der Laan and Starmans, 2014</a>)</span>. In this way,
+Targeted Learning defines a truth and establishes a principled standard for
+estimation, thereby inhibiting these all-too-human biases (e.g., hindsight bias,
+confirmation bias, and outcome bias) from infiltrating analysis.</p>
+<blockquote>
+<p>“The key for effective classical [statistical] inference is to have
+well-defined questions and an analysis plan that tests those questions.”</p>
+<p>— <span class="citation">Nosek <em>et al.</em> (<a href="references.html#ref-nosek2018preregistration">2018</a>)</span></p>
+</blockquote>
+<p>Our objective is to provide training to students, researchers, industry professionals, faculty in science, public health, statistics, and other
+fields to empower them with the necessary knowledge and skills to utilize the
+sound methodology of Targeted Learning — a technique that provides tailored
+pre-specified machines for answering queries, so that each data analysis is
+completely reproducible, and estimators are efficient, minimally biased, and
+provide formal statistical inference.</p>
+<p>Just as the conscientious use of modern statistical methodology is necessary to
+ensure that scientific practice thrives — robust, well-tested software plays a
+critical role in allowing practitioners to access the published results of a
+given scientific investigation. We concur with the view put forth by
+<span class="citation">Buckheit and Donoho (<a href="references.html#ref-buckheit1995wavelab">1995</a>)</span> that “an article… in a scientific publication is not the
+scholarship itself, it is merely advertising of the scholarship. The actual
+scholarship is the complete software development environment and the complete
+set of instructions which generated the figures,” making the availability and
+adoption of robust statistical software key to enhancing the transparency that
+is an inherent (and assumed) aspect of the scientific process.</p>
+<p>For a statistical methodology to be readily accessible in practice, it is
+crucial that it is accompanied by user-friendly software
+<span class="citation">(<a href="references.html#ref-pullenayegum2016knowledge">Pullenayegum <em>et al.</em>, 2016</a>; <a href="references.html#ref-stromberg2004write">Stromberg <em>et al.</em>, 2004</a>)</span>. The <code>tlverse</code> software
+ecosystem, composed of a set of packages for the <code>R</code> language and environment for
+statistical computing <span class="citation">(<a href="references.html#ref-R">R Core Team, 2021</a>)</span>, was developed to fulfill this need for the TL
+methodological framework. Not only does this suite of software tools
+facilitate computationally reproducible and efficient analyses, it is also a
+tool for TL education. Rather than focusing on implementing a specific estimator
+or a small set of related estimators, the design paradigm of the <code>tlverse</code>
+ecosystem focuses on exposing the statistical framework of Targeted Learning
+itself: all software packages in the <code>tlverse</code> ecosystem directly model the key
+objects defined in the mathematical and theoretical framework of Targeted
+Learning. What’s more, the <code>tlverse</code> software packages share a core set of
+design principles centered on extensibility, allowing for them to be used in
+conjunction with each other and used cohesively as building blocks for
+formulating sophisticated statistical analyses. For an introduction to the TL
+framework, we recommend <span class="citation">Coyle <em>et al.</em> (<a href="references.html#ref-coyle2021targeted">2021</a>)</span>’s <a href="https://arxiv.org/abs/2006.07333">recent review
+paper</a>.</p>
+<p>In this workshop, the reader will embark on a journey through the <code>tlverse</code>
+ecosystem. Guided by <code>R</code> programming exercises, case studies, and
+intuitive explanation readers will build a toolbox for applying the Targeted
+Learning statistical methodology, which will translate to real-world causal
+inference analyses. Participants need not be a fully trained statistician to
+begin understanding and applying these methods. However, it is highly
+recommended for participants to have an understanding of basic statistical
+concepts such as confounding, probability distributions, confidence intervals,
+hypothesis tests, and regression. Advanced knowledge of mathematical statistics
+may be useful but is not necessary. Familiarity with the <code>R</code> programming
+language will be essential. We also recommend an understanding of introductory
+causal inference.</p>
+
+</div>
+
+
+
+  <div class="chapter-nav">
+<div class="prev"><a href="index.html">Welcome!</a></div>
+<div class="next"><a href="setting-up-r-and-rstudio.html">Setting up R and RStudio</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#introduction">Introduction</a></li></ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/tlverse/tlverse-workshops/blob/master/01-introduction.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/tlverse/tlverse-workshops/edit/master/01-introduction.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>[Workshop] Targeted Learning in the <code>tlverse</code></strong>: Causal Inference Meets Machine Learning" was written by Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana Malenica, Rachael Phillips. It was last built on updated: November 13, 2024.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Welcome! | [Workshop] Targeted Learning in the tlverse</title>
+<meta name="author" content="Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana Malenica, Rachael Phillips">
+<meta name="description" content="Open source, reproducible teaching materials accompanying a workshop or short course on Targeted Learning with the tlverse software ecosystem.">
+<meta name="generator" content="bookdown 0.41.1 with bs4_book()">
+<meta property="og:title" content="Welcome! | [Workshop] Targeted Learning in the tlverse">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://tlverse.org/tlverse-workshops/">
+<meta property="og:description" content="Open source, reproducible teaching materials accompanying a workshop or short course on Targeted Learning with the tlverse software ecosystem.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Welcome! | [Workshop] Targeted Learning in the tlverse">
+<meta name="twitter:description" content="Open source, reproducible teaching materials accompanying a workshop or short course on Targeted Learning with the tlverse software ecosystem.">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="libs/vis-9.1.0/vis-network.min.css" rel="stylesheet">
+<script src="libs/vis-9.1.0/vis-network.min.js"></script><script src="libs/visNetwork-binding-2.1.2/visNetwork.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet">
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+</head>
+<body>
+<span class="math inline">
+    \(\DeclareMathOperator{\expit}{expit}\)
+    \(\DeclareMathOperator{\logit}{logit}\)
+    \(\DeclareMathOperator*{\argmin}{\arg\!\min}\)
+    \(\newcommand{\indep}{\perp\!\!\!\perp}\)
+    \(\newcommand{\coloneqq}{\mathrel{=}}\)
+    \(\newcommand{\R}{\mathbb{R}}\)
+    \(\newcommand{\E}{\mathbb{E}}\)
+    \(\newcommand{\M}{\mathcal{M}}\)
+    \(\renewcommand{\P}{\mathbb{P}}\)
+    \(\newcommand{\I}{\mathbb{I}}\)
+    \(\newcommand{\1}{\mathbbm{1}}\)
+    </span>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Causal Inference Meets Machine Learning">[Workshop] Targeted Learning in the <code>tlverse</code></a>:
+        <small class="text-muted">Causal Inference Meets Machine Learning</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="active" href="index.html">Welcome!</a></li>
+<li><a class="" href="introduction.html">Introduction</a></li>
+<li class="book-part">Part 1: Preliminaries</li>
+<li><a class="" href="setting-up-r-and-rstudio.html">Setting up R and RStudio</a></li>
+<li><a class="" href="installtlverse.html"><span class="header-section-number">1</span> Install tlverse software</a></li>
+<li><a class="" href="supplemental-learning-resources.html">Supplemental learning resources</a></li>
+<li class="book-part">Part 2: The tlverse</li>
+<li><a class="" href="what-is-the-tlverse.html">What is the tlverse?</a></li>
+<li><a class="" href="primer-on-the-r6-class-system.html">Primer on the R6 Class System</a></li>
+<li class="book-part">Part 3: Foundations</li>
+<li><a class="" href="intro.html"><span class="header-section-number">2</span> The Roadmap for Targeted Learning</a></li>
+<li><a class="" href="example-dataset.html">Example Dataset</a></li>
+<li><a class="" href="origami.html"><span class="header-section-number">3</span> Cross-validation</a></li>
+<li><a class="" href="sl3.html"><span class="header-section-number">4</span> Super Learning</a></li>
+<li><a class="" href="tmle3.html"><span class="header-section-number">5</span> The TMLE Framework</a></li>
+<li class="book-part">Part 4: Advanced Topics</li>
+<li><a class="" href="optimal-individualized-treatment-regimes.html"><span class="header-section-number">6</span> Optimal Individualized Treatment Regimes</a></li>
+<li><a class="" href="stochastic-treatment-regimes-optional.html"><span class="header-section-number">7</span> Stochastic Treatment Regimes (optional)</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/tlverse/tlverse-workshops">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><!--bookdown:title:end--><!--bookdown:title:start--><div id="welcome" class="section level1 unnumbered">
+<h1>Welcome!<a class="anchor" aria-label="anchor" href="#welcome"><i class="fas fa-link"></i></a>
+</h1>
+<p>This open source, reproducible vignette is for a workshop on the
+Targeted Learning framework for statistical and causal inference with machine
+learning. Beyond introducing Targeted Learning, the workshop focuses on
+applying the methodology in practice using the <a href="https://github.com/tlverse"><code>tlverse</code> software
+ecosystem</a>. These materials are based on a working
+draft of the book <a href="https://tlverse.org/tlverse-handbook/"><em>Targeted Learning in <code>R</code>: Causal Data Science with the
+<code>tlverse</code> Software Ecosystem</em></a>, which
+includes in-depth discussion of these topics and much more, and may serve as a
+useful reference to accompany these workshop materials.</p>
+<img style="float: center; margin-right: 1%; margin-bottom: 0.01em" src="img/logos/tlverse-logo.svg" width="30%" height="30%"><img style="float: center; margin-right: 1%; margin-bottom: 0.01em" src="img/logos/Rlogo.svg" width="35%" height="35%"><img style="float: center; margin-right: 1%; margin-bottom: 0.01em" src="img/logos/vdl-logo-transparent.svg" width="30%" height="30%"><p style="clear: both;">
+</p>
+<p><br></p>
+<div id="important-links" class="section level2 unnumbered">
+<h2>Important links<a class="anchor" aria-label="anchor" href="#important-links"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><p><strong>Load R environment</strong>: Please set up the <code>R</code> virtual environment using the
+<a href="https://github.com/tlverse/tlverse-workshops/blob/master/install.md">instructions</a>.
+If you experiencing issues with the <code>R</code> environment, you may install the
+relevant software packages before the workshop using the <a href="https://github.com/tlverse/tlverse-workshops/blob/master/install.R">installation
+script</a>.</p></li>
+<li><p>You will probably exceed the GitHub API rate limit during this installation,
+which will throw an error. This issue and the solution are addressed
+<a href="installtlverse.html#installtlverse">here</a>.</p></li>
+<li><p><strong>Code</strong>: <code>R</code> script files for each section of the workshop are available via
+the GitHub repository for the workshop at
+<a href="https://github.com/tlverse/tlverse-workshops/tree/master/R_code" class="uri">https://github.com/tlverse/tlverse-workshops/tree/master/R_code</a></p></li>
+</ul>
+</div>
+<div id="about-this-workshop" class="section level2 unnumbered">
+<h2>About this workshop<a class="anchor" aria-label="anchor" href="#about-this-workshop"><i class="fas fa-link"></i></a>
+</h2>
+<p>This workshop will provide a comprehensive introduction to the field of
+<em>Targeted Learning (TL)</em> for statistical and causal inference, and the
+corresponding <a href="https://github.com/tlverse"><code>tlverse</code> software ecosystem</a>.
+Emphasis will be placed on super learning (SL) and targeted minimum loss-based
+estimation (TMLE) for causal effects of single time point interventions. TMLE
+represents a finite-sample robust, efficient substitution estimation strategy
+that uses super (ensemble machine) learning to flexibly adjust for confounding
+while yielding valid statistical inference. We will discuss TMLE for the causal
+effects of static and dynamic interventions; time permitting, additional topics
+to be discussed will include estimation of the causal effects of optimal dynamic
+and stochastic interventions.</p>
+<p>In addition to discussion, this workshop will incorporate both interactive
+activities and hands-on, guided <code>R</code> programming exercises, to allow participants
+the opportunity to familiarize themselves with methodology and tools that will
+translate to real-world data analysis. It is highly recommended for participants
+to have an understanding of basic statistical concepts such as confounding,
+probability distributions, confidence intervals, hypothesis testing, and
+regression. Advanced knowledge of mathematical statistics is useful but not
+necessary. Familiarity with the <code>R</code> programming language will be essential.</p>
+</div>
+<div id="outline" class="section level2 unnumbered">
+<h2>Outline<a class="anchor" aria-label="anchor" href="#outline"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>
+<em>Warm-up</em>: The Roadmap of Targeted Learning and <a href="https://senseaboutscienceusa.org/super-learning-and-the-revolution-in-knowledge/">Why We Need A Statistical
+Revolution</a>
+with an <em><a href="https://www.dropbox.com/s/7b6ru2ahycqq80v/ENAR2021-lecture.mp4?dl=0">introductory video lecture by Mark van der Laan and Alan
+Hubbard</a></em>
+(<strong>Please watch this hour-long lecture before the workshop.</strong>)</li>
+<li>09:00-09:30A: <a href="https://tlverse.org">Introduction to the <code>tlverse</code> Software
+Ecosystem</a> and the <a href="http://www.washbenefits.net/">WASH Benefits
+data</a>
+</li>
+<li>09:30-10:00A: Super learning with the <a href="https://github.com/tlverse/sl3"><code>sl3</code> <code>R</code>
+package</a>
+</li>
+<li>10:00-11:00A: Programming exercises with <code>sl3</code>
+</li>
+<li>11:00-11:15A: Morning Coffee Break and Q&amp;A</li>
+<li>11:15-12:00P: Targeted Learning for causal inference with the <a href="https://github.com/tlverse/tmle3"><code>tmle3</code> <code>R</code>
+package</a>
+</li>
+<li>12:00-12:45P: Programming exercises with <code>tmle3</code>
+</li>
+<li>12:45-01:30P: Lunch Break</li>
+<li>01:30-02:15P: Optimal treatment regimes with the <a href="https://github.com/tlverse/tmle3mopttx"><code>tmle3mopttx</code> <code>R</code>
+package</a>
+</li>
+<li>02:15-03:00P: Programming exercises with <code>tmle3mopttx</code>
+</li>
+<li>03:00-03:15P: Afternoon Coffee Break</li>
+<li>03:15-04:00P: Stochastic treatment regimes with the <a href="https://github.com/tlverse/tmle3shift"><code>tmle3shift</code> <code>R</code>
+package</a>
+</li>
+<li>04:00-04:30P: Programming exercises with <code>tmle3shift</code>
+</li>
+<li>04:30-05:00P: Concluding remarks and discussion</li>
+</ul>
+<!--
+__NOTE: All listings are in Pacific Time.__
+-->
+</div>
+<div id="about-the-instructors" class="section level2 unnumbered">
+<h2>About the instructors<a class="anchor" aria-label="anchor" href="#about-the-instructors"><i class="fas fa-link"></i></a>
+</h2>
+<div id="mark-van-der-laan" class="section level3 unnumbered">
+<h3>Mark van der Laan<a class="anchor" aria-label="anchor" href="#mark-van-der-laan"><i class="fas fa-link"></i></a>
+</h3>
+<p>Mark van der Laan, PhD, is Professor of Biostatistics and Statistics at UC
+Berkeley. His research interests include statistical methods in computational
+biology, survival analysis, censored data, adaptive designs, targeted maximum
+likelihood estimation, causal inference, data-adaptive loss-based learning, and
+multiple testing. His research group developed loss-based super learning in
+semiparametric models, based on cross-validation, as a generic optimal tool for
+the estimation of infinite-dimensional parameters, such as nonparametric density
+estimation and prediction with both censored and uncensored data. Building on
+this work, his research group developed targeted maximum likelihood estimation
+for a target parameter of the data-generating distribution in arbitrary
+semiparametric and nonparametric models, as a generic optimal methodology for
+statistical and causal inference. Most recently, Mark’s group has focused in
+part on the development of a centralized, principled set of software tools for
+targeted learning, the <code>tlverse</code>.</p>
+</div>
+<div id="alan-hubbard" class="section level3 unnumbered">
+<h3>Alan Hubbard<a class="anchor" aria-label="anchor" href="#alan-hubbard"><i class="fas fa-link"></i></a>
+</h3>
+<p>Alan Hubbard is Professor of Biostatistics, former head of the Division of
+Biostatistics at UC Berkeley, and head of data analytics core at UC Berkeley’s
+SuperFund research program. His current research interests include causal
+inference, variable importance analysis, statistical machine learning,
+estimation of and inference for data-adaptive statistical target parameters, and
+targeted minimum loss-based estimation. Research in his group is generally
+motivated by applications to problems in computational biology, epidemiology,
+and precision medicine.</p>
+</div>
+<div id="jeremy-coyle" class="section level3 unnumbered">
+<h3>Jeremy Coyle<a class="anchor" aria-label="anchor" href="#jeremy-coyle"><i class="fas fa-link"></i></a>
+</h3>
+<p>Jeremy Coyle, PhD, is a consulting data scientist and statistical programmer,
+currently leading the software development effort that has produced the
+<code>tlverse</code> ecosystem of R packages and related software tools. Jeremy earned his
+PhD in Biostatistics from UC Berkeley in 2016, primarily under the supervision
+of Alan Hubbard.</p>
+</div>
+<div id="nima-hejazi" class="section level3 unnumbered">
+<h3>Nima Hejazi<a class="anchor" aria-label="anchor" href="#nima-hejazi"><i class="fas fa-link"></i></a>
+</h3>
+<p><a href="https://nimahejazi.org">Nima Hejazi</a>, PhD, is an incoming Assistant Professor
+of Biostatistics at the <a href="https://www.hsph.harvard.edu/biostatistics/">Harvard T.H. Chan School of Public
+Health</a>. He received his PhD in
+biostatistics at UC Berkeley, working under the supervision of Mark van der Laan
+and Alan Hubbard, and afterwards held an NSF postdoctoral research fellowship.
+Nima’s research interests blend causal inference, machine learning,
+semiparametric estimation, and computational statistics – areas of recent
+emphasis include causal mediation analysis, efficiency under biased sampling
+designs, non/semi-parametric sieve estimation with machine learning, and
+targeted loss-based estimation. His work is primarily driven by applications in
+clinical trials (esp. vaccine efficacy trials), infectious disease epidemiology,
+and computational biology. Nima is passionate about statistical computing
+and open source software design standards for statistical data science, and he
+has co-led or contributed significantly to many <code>tlverse</code> packages (<code>hal9001</code>,
+<code>sl3</code>, <code>tmle3</code>, <code>origami</code>, <code>tmle3shift</code>, <code>tmle3mediate</code>).</p>
+</div>
+<div id="ivana-malenica" class="section level3 unnumbered">
+<h3>Ivana Malenica<a class="anchor" aria-label="anchor" href="#ivana-malenica"><i class="fas fa-link"></i></a>
+</h3>
+<p>Ivana Malenica is a PhD student in biostatistics advised by Mark van der Laan.
+Ivana is currently a fellow at the Berkeley Institute for Data Science, after
+serving as a NIH Biomedical Big Data and Freeport-McMoRan Genomic Engine fellow.
+She earned her Master’s in Biostatistics and Bachelor’s in Mathematics, and
+spent some time at the Translational Genomics Research Institute. Very broadly,
+her research interests span non/semi-parametric theory, probability theory,
+machine learning, causal inference and high-dimensional statistics. Most of her
+current work involves complex dependent settings (dependence through time and
+network) and adaptive sequential designs.</p>
+</div>
+<div id="rachael-phillips" class="section level3 unnumbered">
+<h3>Rachael Phillips<a class="anchor" aria-label="anchor" href="#rachael-phillips"><i class="fas fa-link"></i></a>
+</h3>
+<p>Rachael Phillips is a PhD student in biostatistics, advised by Alan Hubbard and
+Mark van der Laan. She has an MA in Biostatistics, BS in Biology, and BA in
+Mathematics. Her research integrates causal inference, machine learning, and
+nonparametric statistics to realistically approximate answers to causal questions
+with statistical confidence. Motivated by issues arising in healthcare, the
+projects she’s pursued include the development of (i) clinical algorithm frameworks
+and guidelines; (ii) real-world data analysis methodologies for generating and
+evaluating real-world evidence; (iii) open-source software, including key contributions to
+<code>sl3</code>, <code>origami</code> and <code>hal9001</code> packages; and (iv) biostatistics graduate-level
+courses and other educational material for targeted learning and causal inference.</p>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="empty"></div>
+<div class="next"><a href="introduction.html">Introduction</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#welcome">Welcome!</a></li>
+<li><a class="nav-link" href="#important-links">Important links</a></li>
+<li><a class="nav-link" href="#about-this-workshop">About this workshop</a></li>
+<li><a class="nav-link" href="#outline">Outline</a></li>
+<li>
+<a class="nav-link" href="#about-the-instructors">About the instructors</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#mark-van-der-laan">Mark van der Laan</a></li>
+<li><a class="nav-link" href="#alan-hubbard">Alan Hubbard</a></li>
+<li><a class="nav-link" href="#jeremy-coyle">Jeremy Coyle</a></li>
+<li><a class="nav-link" href="#nima-hejazi">Nima Hejazi</a></li>
+<li><a class="nav-link" href="#ivana-malenica">Ivana Malenica</a></li>
+<li><a class="nav-link" href="#rachael-phillips">Rachael Phillips</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/tlverse/tlverse-workshops/blob/master/index.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/tlverse/tlverse-workshops/edit/master/index.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>[Workshop] Targeted Learning in the <code>tlverse</code></strong>: Causal Inference Meets Machine Learning" was written by Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana Malenica, Rachael Phillips. It was last built on updated: November 13, 2024.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

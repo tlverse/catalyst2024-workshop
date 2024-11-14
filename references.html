@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>References | [Workshop] Targeted Learning in the tlverse</title>
+<meta name="author" content="Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana Malenica, Rachael Phillips">
+<meta name="description" content="Baker, M. (2016) Is there a reproducibility crisis? A nature survey lifts the lid on how researchers view the crisis rocking science and what they think will help. Nature, 533, 452–455. Nature...">
+<meta name="generator" content="bookdown 0.41.1 with bs4_book()">
+<meta property="og:title" content="References | [Workshop] Targeted Learning in the tlverse">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://tlverse.org/tlverse-workshops/references.html">
+<meta property="og:description" content="Baker, M. (2016) Is there a reproducibility crisis? A nature survey lifts the lid on how researchers view the crisis rocking science and what they think will help. Nature, 533, 452–455. Nature...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="References | [Workshop] Targeted Learning in the tlverse">
+<meta name="twitter:description" content="Baker, M. (2016) Is there a reproducibility crisis? A nature survey lifts the lid on how researchers view the crisis rocking science and what they think will help. Nature, 533, 452–455. Nature...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="libs/vis-9.1.0/vis-network.min.css" rel="stylesheet">
+<script src="libs/vis-9.1.0/vis-network.min.js"></script><script src="libs/visNetwork-binding-2.1.2/visNetwork.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet">
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+</head>
+<body>
+<span class="math inline">
+    \(\DeclareMathOperator{\expit}{expit}\)
+    \(\DeclareMathOperator{\logit}{logit}\)
+    \(\DeclareMathOperator*{\argmin}{\arg\!\min}\)
+    \(\newcommand{\indep}{\perp\!\!\!\perp}\)
+    \(\newcommand{\coloneqq}{\mathrel{=}}\)
+    \(\newcommand{\R}{\mathbb{R}}\)
+    \(\newcommand{\E}{\mathbb{E}}\)
+    \(\newcommand{\M}{\mathcal{M}}\)
+    \(\renewcommand{\P}{\mathbb{P}}\)
+    \(\newcommand{\I}{\mathbb{I}}\)
+    \(\newcommand{\1}{\mathbbm{1}}\)
+    </span>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Causal Inference Meets Machine Learning">[Workshop] Targeted Learning in the <code>tlverse</code></a>:
+        <small class="text-muted">Causal Inference Meets Machine Learning</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome!</a></li>
+<li><a class="" href="introduction.html">Introduction</a></li>
+<li class="book-part">Part 1: Preliminaries</li>
+<li><a class="" href="setting-up-r-and-rstudio.html">Setting up R and RStudio</a></li>
+<li><a class="" href="installtlverse.html"><span class="header-section-number">1</span> Install tlverse software</a></li>
+<li><a class="" href="supplemental-learning-resources.html">Supplemental learning resources</a></li>
+<li class="book-part">Part 2: The tlverse</li>
+<li><a class="" href="what-is-the-tlverse.html">What is the tlverse?</a></li>
+<li><a class="" href="primer-on-the-r6-class-system.html">Primer on the R6 Class System</a></li>
+<li class="book-part">Part 3: Foundations</li>
+<li><a class="" href="intro.html"><span class="header-section-number">2</span> The Roadmap for Targeted Learning</a></li>
+<li><a class="" href="example-dataset.html">Example Dataset</a></li>
+<li><a class="" href="origami.html"><span class="header-section-number">3</span> Cross-validation</a></li>
+<li><a class="" href="sl3.html"><span class="header-section-number">4</span> Super Learning</a></li>
+<li><a class="" href="tmle3.html"><span class="header-section-number">5</span> The TMLE Framework</a></li>
+<li class="book-part">Part 4: Advanced Topics</li>
+<li><a class="" href="optimal-individualized-treatment-regimes.html"><span class="header-section-number">6</span> Optimal Individualized Treatment Regimes</a></li>
+<li><a class="" href="stochastic-treatment-regimes-optional.html"><span class="header-section-number">7</span> Stochastic Treatment Regimes (optional)</a></li>
+<li><a class="active" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/tlverse/tlverse-workshops">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="references" class="section level1 unnumbered">
+<h1>References<a class="anchor" aria-label="anchor" href="#references"><i class="fas fa-link"></i></a>
+</h1>
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-baker2016there" class="csl-entry">
+Baker, M. (2016) Is there a reproducibility crisis? A nature survey lifts the lid on how researchers view the crisis rocking science and what they think will help. <em>Nature</em>, <strong>533</strong>, 452–455. Nature Publishing Group.
+</div>
+<div id="ref-bengtsson2021unifying" class="csl-entry">
+Bengtsson, H. (2021) A unifying framework for parallel and distributed processing in r using futures. <em><span>The R Journal</span></em>. DOI: <a href="https://doi.org/10.32614/RJ-2021-048">10.32614/RJ-2021-048</a>.
+</div>
+<div id="ref-benkeser2016hal" class="csl-entry">
+Benkeser, D. and van der Laan, M. J. (2016) The highly adaptive lasso estimator. In: <em>2016 <span>IEEE</span> international conference on data science and advanced analytics (<span>DSAA</span>)</em>, 2016. <span>IEEE</span>. DOI: <a href="https://doi.org/10.1109/dsaa.2016.93">10.1109/dsaa.2016.93</a>.
+</div>
+<div id="ref-breiman1996stacked" class="csl-entry">
+Breiman, L. (1996) Stacked regressions. <em>Machine learning</em>, <strong>24</strong>, 49–64. Springer.
+</div>
+<div id="ref-breiman2001random" class="csl-entry">
+Breiman, L. (2001) Random forests. <em>Machine Learning</em>, <strong>45</strong>, 5–32. Springer.
+</div>
+<div id="ref-buckheit1995wavelab" class="csl-entry">
+Buckheit, J. B. and Donoho, D. L. (1995) Wavelab and reproducible research. In <em>Wavelets and Statistics</em>, pp. 55–81. Springer.
+</div>
+<div id="ref-coyle2018origami" class="csl-entry">
+Coyle, J. R. and Hejazi, N. S. (2018) Origami: A generalized framework for cross-validation in r. <em>Journal of Open Source Software</em>, <strong>3</strong>. The Open Journal. DOI: <a href="https://doi.org/10.21105/joss.00512">10.21105/joss.00512</a>.
+</div>
+<div id="ref-coyle2021targeted" class="csl-entry">
+Coyle, J. R., Hejazi, N. S., Malenica, I., et al. (2021) <span>Targeting Learning</span>: Robust statistics for reproducible research. <em>arXiv</em>. Available at: <a href="https://arxiv.org/abs/2006.07333">https://arxiv.org/abs/2006.07333</a>.
+</div>
+<div id="ref-coyle2020hal9001" class="csl-entry">
+Coyle, J. R., Hejazi, N. S., Phillips, R. V., et al. (2022) <em><span class="nocase">hal9001</span>: The Scalable Highly Adaptive Lasso</em>. DOI: <a href="https://doi.org/10.5281/zenodo.3558313">10.5281/zenodo.3558313</a>.
+</div>
+<div id="ref-coyle-cran-origami" class="csl-entry">
+Coyle, J. R., Hejazi, N. S., Malenica, I., et al. (n.d.) <span><code>origami</code></span>: Generalized framework for cross-validation. DOI: <a href="https://doi.org/10.5281/zenodo.835602">10.5281/zenodo.835602</a>.
+</div>
+<div id="ref-davison1997bootstrap" class="csl-entry">
+Davison, A. C. and Hinkley, D. V. (1997) <em>Bootstrap Methods and Their Application</em>. Cambridge University Press.
+</div>
+<div id="ref-diaz2011super" class="csl-entry">
+Dı́az, I. and van der Laan, M. J. (2011) Super learner based conditional density estimation with application to marginal structural models. <em>The International Journal of Biostatistics</em>, <strong>7</strong>, 1–20. De Gruyter.
+</div>
+<div id="ref-diaz2012population" class="csl-entry">
+Dı́az, I. and van der Laan, M. J. (2012) Population intervention causal effects based on stochastic interventions. <em>Biometrics</em>, <strong>68</strong>, 541–549. Wiley Online Library.
+</div>
+<div id="ref-diaz2018stochastic" class="csl-entry">
+Dı́az, I. and van der Laan, M. J. (2018) Stochastic treatment regimes. In <em>Targeted Learning in Data Science: Causal Inference for Complex Longitudinal Studies</em>, pp. 167–180. Springer Science &amp; Business Media.
+</div>
+<div id="ref-dudoit2005asymptotics" class="csl-entry">
+Dudoit, S. and van der Laan, M. J. (2005) Asymptotics of cross-validated risk estimation in estimator selection and performance assessment. <em>Statistical Methodology</em>, <strong>2</strong>, 131–154. Elsevier.
+</div>
+<div id="ref-haneuse2013estimation" class="csl-entry">
+Haneuse, S. and Rotnitzky, A. (2013) Estimation of the effect of interventions that modify the received treatment. <em>Statistics in medicine</em>, <strong>32</strong>, 5260–5277. Wiley Online Library.
+</div>
+<div id="ref-hejazi2020hal9001" class="csl-entry">
+Hejazi, N. S., Coyle, J. R. and van der Laan, M. J. (2020) <span class="nocase">hal9001</span>: Scalable highly adaptive lasso regression in <span>R</span>. <em>Journal of Open Source Software</em>. The Open Journal. DOI: <a href="https://doi.org/10.21105/joss.02526">10.21105/joss.02526</a>.
+</div>
+<div id="ref-hejazi2020haldensify" class="csl-entry">
+Hejazi, N. S., Benkeser, D. C. and van der Laan, M. J. (2022) <em><span class="nocase">haldensify</span>: Highly Adaptive Lasso Conditional Density Estimation</em>. <a href="https://github.com/nhejazi/haldensify" class="uri">https://github.com/nhejazi/haldensify</a>. DOI: <a href="https://doi.org/10.5281/zenodo.3698329">10.5281/zenodo.3698329</a>.
+</div>
+<div id="ref-munafo2017manifesto" class="csl-entry">
+Munafò, M. R., Nosek, B. A., Bishop, D. V., et al. (2017) A manifesto for reproducible science. <em>Nature Human Behaviour</em>, <strong>1</strong>, 0021. Nature Publishing Group.
+</div>
+<div id="ref-naimi2018stacked" class="csl-entry">
+Naimi, A. I. and Balzer, L. B. (2018) Stacked generalization: An introduction to super learning. <em>European Journal of Epidemiology</em>, <strong>33</strong>, 459–464. Springer.
+</div>
+<div id="ref-naturenews2_2015" class="csl-entry">
+Nature Editorial (Anonymous) (2015a) How scientists fool themselves — and how they can stop. <em>Nature</em>, <strong>526</strong>. Springer Nature.
+</div>
+<div id="ref-naturenews_2015" class="csl-entry">
+Nature Editorial (Anonymous) (2015b) Let’s think about cognitive bias. <em>Nature</em>, <strong>526</strong>. Springer Nature. DOI: <a href="https://doi.org/10.1038/526163a">10.1038/526163a</a>.
+</div>
+<div id="ref-nosek2018preregistration" class="csl-entry">
+Nosek, B. A., Ebersole, C. R., DeHaven, A. C., et al. (2018) The preregistration revolution. <em>Proceedings of the National Academy of Sciences</em>, <strong>115</strong>, 2600–2606. National Academy of Sciences.
+</div>
+<div id="ref-peng2015reproducibility" class="csl-entry">
+Peng, R. (2015) The reproducibility crisis in science: A statistical counterattack. <em>Significance</em>, <strong>12</strong>, 30–32. Wiley Online Library.
+</div>
+<div id="ref-rvp2022super" class="csl-entry">
+Phillips, R. V., van der Laan, M. J., Lee, H., et al. (2022) Practical considerations for specifying a super learner. arXiv. DOI: <a href="https://doi.org/10.48550/ARXIV.2204.06139">10.48550/ARXIV.2204.06139</a>.
+</div>
+<div id="ref-polley2010super" class="csl-entry">
+Polley, E. C. and van der Laan, M. J. (2010) <em>Super learner in prediction</em>. <span>Division of Biostatistics, University of California, Berkeley</span>; bepress.
+</div>
+<div id="ref-pullenayegum2016knowledge" class="csl-entry">
+Pullenayegum, E. M., Platt, R. W., Barwick, M., et al. (2016) Knowledge translation in biostatistics: A survey of current practices, preferences, and barriers to the dissemination and uptake of new statistical methods. <em>Statistics in medicine</em>, <strong>35</strong>, 805–818. Wiley Online Library.
+</div>
+<div id="ref-R" class="csl-entry">
+R Core Team (2021) : A language and environment for statistical computing. Vienna, Austria: R Foundation for Statistical Computing. Available at: <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
+</div>
+<div id="ref-stark2018cargo" class="csl-entry">
+Stark, P. B. and Saltelli, A. (2018) Cargo-cult statistics and scientific crisis. <em>Significance</em>, <strong>15</strong>, 40–43. Wiley Online Library.
+</div>
+<div id="ref-stromberg2004write" class="csl-entry">
+Stromberg, A. et al. (2004) Why write statistical software? The case of robust statistical methods. <em>Journal of Statistical Software</em>, <strong>10</strong>, 1–8.
+</div>
+<div id="ref-szucs2017null" class="csl-entry">
+Szucs, D. and Ioannidis, J. (2017) When null hypothesis significance testing is unsuitable for research: A reassessment. <em>Frontiers in Human Neuroscience</em>, <strong>11</strong>, 390. Frontiers.
+</div>
+<div id="ref-luby2018effect" class="csl-entry">
+Tofail, F., Fernald, L. C., Das, K. K., et al. (2018) Effect of water quality, sanitation, hand washing, and nutritional interventions on child development in rural bangladesh (WASH benefits bangladesh): A cluster-randomised controlled trial. <em>The Lancet Child &amp; Adolescent Health</em>, <strong>2</strong>, 255–268. Elsevier.
+</div>
+<div id="ref-vdl2003unified" class="csl-entry">
+van der Laan, M. J. and Dudoit, S. (2003) <em>Unified cross-validation methodology for selection among estimators and a general cross-validated adaptive epsilon-net estimator: Finite sample oracle inequalities and examples</em>. <span>Division of Biostatistics, University of California, Berkeley</span>; bepress.
+</div>
+<div id="ref-vdl2011targeted" class="csl-entry">
+van der Laan, M. J. and Rose, S. (2011) <em>Targeted Learning: Causal Inference for Observational and Experimental Data</em>. Springer Science &amp; Business Media.
+</div>
+<div id="ref-vdl2014entering" class="csl-entry">
+van der Laan, M. J. and Starmans, R. J. (2014) Entering the era of data science: Targeted learning and the integration of statistics and computational data analysis. <em>Advances in Statistics</em>, <strong>2014</strong>. Hindawi.
+</div>
+<div id="ref-vdl2004asymptotic" class="csl-entry">
+van der Laan, M. J., Dudoit, S. and Keles, S. (2004) Asymptotic optimality of likelihood-based cross-validation. <em>Statistical Applications in Genetics and Molecular Biology</em>, <strong>3</strong>, 1–23.
+</div>
+<div id="ref-vdl2007super" class="csl-entry">
+van der Laan, M. J., Polley, E. C. and Hubbard, A. E. (2007) <span>Super Learner</span>. <em>Statistical Applications in Genetics and Molecular Biology</em>, <strong>6</strong>.
+</div>
+<div id="ref-vaart2006oracle" class="csl-entry">
+van der Vaart, A. W., Dudoit, S. and van der Laan, M. J. (2006) Oracle inequalities for multi-fold cross validation. <em>Statistics &amp; Decisions</em>, <strong>24</strong>, 351–371. Oldenbourg Wissenschaftsverlag.
+</div>
+<div id="ref-wickham2014advanced" class="csl-entry">
+Wickham, H. (2014) <em>Advanced r</em>. Chapman; Hall/CRC.
+</div>
+<div id="ref-young2014identification" class="csl-entry">
+Young, J. G., Hernán, M. A. and Robins, J. M. (2014) Identification, estimation and approximation of risk under interventions that depend on the natural value of treatment using observational data. <em>Epidemiologic methods</em>, <strong>3</strong>, 1–19. De Gruyter.
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="stochastic-treatment-regimes-optional.html"><span class="header-section-number">7</span> Stochastic Treatment Regimes (optional)</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#references">References</a></li></ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/tlverse/tlverse-workshops/blob/master/references.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/tlverse/tlverse-workshops/edit/master/references.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>[Workshop] Targeted Learning in the <code>tlverse</code></strong>: Causal Inference Meets Machine Learning" was written by Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana Malenica, Rachael Phillips. It was last built on updated: November 13, 2024.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
