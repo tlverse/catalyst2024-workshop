@@ -4,7 +4,7 @@ title: "[Catalyst 2024] Targeted Learning in `R` with the `tlverse`"
 subtitle: "Bridging Machine Learning with Causal and Statistical Inference"
 author: "Mark van der Laan, Alan Hubbard, Jeremy Coyle, Nima Hejazi, Ivana
   Malenica, Rachael Phillips"
-date: "updated: November 14, 2024"
+date: "updated: November 16, 2024"
 documentclass: book
 site: bookdown::bookdown_site
 bibliography: [book.bib, packages.bib]
