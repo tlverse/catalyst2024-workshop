@@ -5,7 +5,7 @@
 - [Mark van der Laan](https://ctml.berkeley.edu/people/mark-van-der-laan-phd),
   University of California, Berkeley
 - [Nima Hejazi](https://www.hsph.harvard.edu/profile/nima-s-hejazi/), Harvard
-  T.H. Chan School of Public Health (webpage:
+  T.H. Chan School of Public Health
 
 ## Schedule
 
