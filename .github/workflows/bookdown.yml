@@ -50,6 +50,7 @@ jobs:
         run: |
           Rscript -e 'bookdown::clean_book(TRUE)'
           Rscript -e 'bookdown::render_book("index.Rmd", quiet = TRUE)'
+          cp slides/*.pdf _book/
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4

@@ -731,7 +731,7 @@ Truth: No effect of exposure on outcome.
   \url{https://tlverse.org/catalyst2024-workshop/tmle3.html}
 \end{frame}
 
-\subsection{Place conclusions in substantive context}
+\subsection{Sensitivity analysis}
 
 \begin{frame}
 \frametitle{Arriving at the substantive conclusion}
@@ -1348,10 +1348,6 @@ $$\Psi^\#(P)=E_P[\Pi(0\mid W,0)\tau^S_P(W,0)-\Pi(0\mid W,1)\tau^S_P(W,1)],$$
 \end{itemize}
 \end{frame}
 
-
-
-
-
 \begin{frame}{Benefits of using A-TMLE include}
 \begin{itemize}
 \item Nominal \textbf{type I error control} without extra assumptions.
@@ -1360,17 +1356,11 @@ $$\Psi^\#(P)=E_P[\Pi(0\mid W,0)\tau^S_P(W,0)-\Pi(0\mid W,1)\tau^S_P(W,1)],$$
 \end{itemize}
 \end{frame}
 
-\section{Simulations}
-
-
 \begin{frame}{Simulation 1: simple bias}
 \centering
 \vspace{1cm}
 \includegraphics[width=1\textwidth,height=0.65\textheight]{figures/simple.pdf}
 \end{frame}
-
-%\begin{frame}{What if the bias is not a simple parametric form?}\begin{itemize}
-%\item \textbf{Highly adaptive lasso (HAL)} is a maximum likelihood estimator over all (or subset of) \textit{càdlàg} functions (right continuous with left limits) with bounded variation norm (Benkeser and van der Laan 2016).\item We use HAL to data-adaptively learn the working submodel for conditional effect of the study indicator $S$.\item Advantages of HAL: \begin{itemize}\item It is \textbf{flexible} and can approximate almost all functions encountered in practice, without making any smoothness assumptions on the true functional form;\item It \textbf{converges} to the true function at a \textbf{fast} rate $n^{-1/3}(\log n)^{2(d-1)/3}$;\item It is an \textbf{MLE}.\end{itemize}\end{itemize}\end{frame}
 
 \begin{frame}{Simulation 2: complex bias}
 \centering
@@ -1466,10 +1456,7 @@ RCT-only & 59.0\% & 61.1\% & 99.0\% & 99.0\% \\
 %\includegraphics[width=1\textwidth,height=0.45\textheight]{HAL_cover.pdf}
 %\end{frame}
 
-
 \subsection{Longitudinal TMLE}
-
-\section{TMLE of Causal Effects of Multiple Time Point Interventions on Survival}
 
 \begin{frame}
 \frametitle{General Longitudinal Data Structure}
@@ -1505,7 +1492,6 @@ The $g_0$-factor represents the intervention mechanism.\\
 We make no assumptions on $q_0$, but could make assumptions on $g_0$.
 \end{frame}
 
-
 \begin{frame}
 \frametitle{Statistical Target Parameter: $G$-computation Formula for Post-dynamic-Intervention Distribution}
 \begin{itemize}
@@ -1523,9 +1509,6 @@ Let $L^d=(L(0),L^d(1),\ldots,Y^d=L^d(K+1))$ denote the random variable with prob
 %It is naturally generalized to the post-intervention distribution for stochastic interventions defined by user-supplied choice $g^*$. 
 \end{itemize}
 \end{frame}
-
-%\begin{frame}\ \nlOur statistical target parameter is the mean of $Y^a$: $\Psi(P)=E_{P^a}Y^a$, where$\Psi:{\cal M}\rightarrow\openr$. \ \nlThis target parameter only depends on $P$ through $Q=Q(P)$. Therefore, we will also denote the target parameter mapping with $\Psi:{\cal Q}=\{Q(P):P\in {\cal M}\}\rightarrow\openr$ so that $\psi_0=\Psi(Q_0)$.\end{frame}
-\section{Sequential Regression Representation of Treatment Specific Mean}
 
 \begin{frame}
 \frametitle{A Sequential Regression $G$-computation Formula (Bang, Robins, 2005)}
@@ -1553,7 +1536,6 @@ is developed  in Petersen et al. (2013);
   \item A new (analogue to sequential regression) TMLE allowing for {\em continuous valued monitoring and time till event} is coming (Rijtgaard, van der Laan, 2019).
  \end{itemize}
  \end{frame}
-
 
 \begin{frame}{A real-world CER study comparing different rules for treatment intensification for diabetes}
 \begin{itemize}
