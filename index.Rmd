@@ -26,14 +26,13 @@ description: "Open source, reproducible teaching materials accompanying a
 
 # Welcome! {-}
 
-This open source, reproducible set of vignettes accompanies a short course
-titled "[Targeted Learning: Bridging Machine Learning with Causal and
-Statistical
+This open source, reproducible set of vignettes accompanies the short course
+"[Targeted Learning: Bridging Machine Learning with Causal and Statistical
 Inference](https://catalyst.harvard.edu/calendar/event/biostatistics-short-course-targeted-learning-bridging-machine-learning-with-causal-and-statistical-inference-november-15/),"
 given as part of the [Harvard Catalyst Biostatistics
 Program](https://catalyst.harvard.edu/biostatistics/) in November 2024. **The
-slide deck for this short course are available at
-<https://github.com/tlverse/catalyst2024-workshop/blob/master/slides/catalyst2024slides.pdf>**
+slide deck for this short course is available in PDF
+[here](https://tlverse.org/catalyst2024-workshop/catalyst2024slides.pdf).**
 
 The set of vignettes focuses on demonstrating how to apply Targeted Learning
 methodology in practice using the [`tlverse` software
@@ -163,7 +162,7 @@ contributed significantly to several core `tlverse` packages (`hal9001`, `sl3`,
 
 ## About the authors {-}
 
-The instructors are only a subset of the team that contributed to the
+The short course instructors are a subset of the team that contributed to the
 development of these workshop materials. This work would not have been possible
 without the following core team members:
 
@@ -202,11 +201,12 @@ network) and adaptive sequential designs.
 
 Rachael Phillips is a PhD student in biostatistics, advised by Alan Hubbard and
 Mark van der Laan. She has an MA in Biostatistics, BS in Biology, and BA in
-Mathematics. Her research integrates causal inference, machine learning, and 
-nonparametric statistics to realistically approximate answers to causal questions 
-with statistical confidence. Motivated by issues arising in healthcare, the 
-projects she's pursued include the development of (i) clinical algorithm frameworks 
-and guidelines; (ii) real-world data analysis methodologies for generating and 
-evaluating real-world evidence; (iii) open-source software, including key contributions to 
-`sl3`, `origami` and `hal9001` packages; and (iv) biostatistics graduate-level 
-courses and other educational material for targeted learning and causal inference.
+Mathematics. Her research integrates causal inference, machine learning, and
+nonparametric statistics to realistically approximate answers to causal
+questions with statistical confidence. Motivated by issues arising in
+healthcare, the projects she's pursued include the development of (i) clinical
+algorithm frameworks and guidelines; (ii) real-world data analysis
+methodologies for generating and evaluating real-world evidence; (iii)
+open-source software, including key contributions to `sl3`, `origami` and
+`hal9001` packages; and (iv) biostatistics graduate-level courses and other
+educational material for targeted learning and causal inference.
